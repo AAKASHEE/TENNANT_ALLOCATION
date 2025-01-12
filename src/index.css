@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+
+  .rotate-90 {
+    transform: rotate(90deg);
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  
