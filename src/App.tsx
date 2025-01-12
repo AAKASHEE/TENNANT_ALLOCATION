@@ -10,7 +10,11 @@ function App() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Home className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-semibold">2BHK Flat TAP ON IMAGES TO SEE FULL VIEW</span>
+              <span className="ml-2 text-xl font-semibold">2BHK</span>
+              <br />
+              <span className="ml-2 text-xl font-semibold">Click on pictures to View</span>
+
+              
             </div>
             <div className="flex items-center space-x-4">
               <a href="#photos" className="text-gray-600 hover:text-blue-600">Photos</a>
@@ -32,7 +36,7 @@ function App() {
         </a>
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center pointer-events-none">
           <div className="text-center text-white">
-            <h1 className="text-4xl font-bold mb-4">113,GROUND FLOOR,5TH CROSS, TEACHER'S COLONY, KUMARSWAMY LAYOUT,NEAR DAYANANDA COLLEGE(20O ),NEAR GSI</h1>
+            <h1 className="text-4xl font-bold mb-4">113,GROUND FLOOR,5TH CROSS, TEACHER'S COLONY, KUMARSWAMY LAYOUT,NEAR DAYANANDA COLLEGE(200 ),NEAR GSI</h1>
             <ol className="text-xl">
               <li>2 SEPARATE ROOMS</li>
               <li>BED AND ALMIRAH EQUIPPED</li>
@@ -111,7 +115,7 @@ function App() {
                 Your browser does not support the video tag.
               </video>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <p className="text-white text-lg font-semibold">BED 01</p>
+                <p className="text-white text-lg font-semibold">BEDROOM 01</p>
               </div>
             </a>
 
@@ -132,12 +136,12 @@ function App() {
                 Your browser does not support the video tag.
               </video>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                <p className="text-white text-lg font-semibold">BED 02</p>
+                <p className="text-white text-lg font-semibold">BEDROOM 02</p>
               </div>
             </a>
             {/* Video 3 */}
             <a 
-              href="../VID/IMG_0166.mp4"
+              href="../VID/IMG_0167.mp4"
               target="_blank"
               rel="noopener noreferrer"
               className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative"
@@ -148,7 +152,7 @@ function App() {
                 loop
                 autoPlay
               >
-                <source src="../VID/IMG_0166.mp4" type="video/mp4" />
+                <source src="../VID/IMG_0167.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
@@ -257,7 +261,7 @@ function App() {
     <div className="max-w-3xl mx-auto">
       <div className="space-y-6">
         <p className="text-lg text-gray-600">
-          This flat is located in a <span className="font-bold">prime area</span> within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, convenient access to transportation, and shopping centers. The flat comes with all necessary amenities, ensuring a comfortable living experience. Additionally, the surrounding neighborhood is quiet and safe, making it an ideal choice for <span className="font-bold">STUDENTS</span>.
+          This flat is located in a <span className="font-bold">prime area</span> within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 50m to <span className="font-bold"></span> convenient access to transportation, and shopping centers. The flat comes with all necessary amenities, ensuring a comfortable living experience. Additionally, the surrounding neighborhood is quiet and safe, making it an ideal choice for <span className="font-bold">STUDENTS</span>.
         </p>
         <p className="text-lg text-gray-600">
           The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, and a comfortable living space. The attached bathroom is equipped with a geyser for hot water and well-maintained fittings. For those who enjoy natural light, the large windows in the living areas provide a warm and inviting atmosphere throughout the day.
@@ -268,16 +272,40 @@ function App() {
         <p className="text-lg text-gray-600">
           <span className="font-bold">PRICING:</span> Rent: <span className="font-bold">13,800/month</span> + Water/Electricity Bill (approx <span className="font-bold">1000/month</span>)
           <br />
-          <span className="font-bold">SECURITY DEPOSIT:</span> <span className="font-bold">35,000</span><p>One month rent will be deducted for  <span className="font-bold">Paint Charges</span>.You will be provided with <span className="font-bold">Rental Agreemenrt Authorized Signature</span></p>
+          <span className="font-bold">SECURITY DEPOSIT:</span> <span className="font-bold">35,000</span><p>One month rent will be deducted for  <span className="font-bold">Paint Charges</span>.You will be provided with <span className="font-bold">Rental Agreement Authorized Signature</span></p>
           <br />
           <span className="font-bold">ALLOWED:</span> For 2 Students belonging to <span className="font-bold">1st/2nd Year:</span>
-        </p>
+          <br />
+          <br />
+          <span className="font-bold">LOCATION:</span>113,GROUND FLOOR,5TH CROSS, TEACHER'S COLONY, KUMARSWAMY LAYOUT,NEAR DAYANANDA COLLEGE(200 ),NEAR GSI</p>
       </div>
     </div>
   </div>
       </section>
-       {/* Footer with Social Links */}
-       <footer className="bg-gray-900 text-white py-8">
+       
+
+      {/* Map Section */}
+<section id="map" className="py-16 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold mb-6">Find Me Here</h2>
+
+            <a 
+            
+      href="https://maps.app.goo.gl/1aaYxdLooTJ5DsMa6?g_st=com.google.maps.preview.copy"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block"
+    >
+      <img 
+        src="../IMG/IMG_D835C67C3AEF-1.jpeg" 
+        alt="Map Location"
+        className="w-full h-auto cursor-pointer"
+      />
+    </a>
+  </div>
+      </section>
+      {/* Footer with Social Links */}
+      <footer className="bg-gray-900 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center space-x-6">
             <a href="https://www.instagram.com/aakaas.he/" className="hover:text-blue-400 transition-colors duration-300" target="_blank" rel="noopener noreferrer">
@@ -291,6 +319,7 @@ function App() {
             <p className="text-gray-400">© 2024 AKASH PATRA. All rights reserved.</p>
           </div>
         </div>
+
 
       </footer>
     </div>
