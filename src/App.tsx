@@ -15,12 +15,12 @@ function App() {
   const [currentVideo, setCurrentVideo] = useState("");
 
   // Separate functions for photo and video lightboxes
-  const openPhotoLightbox = (url: React.SetStateAction<string>) => {
+  const openPhotoLightbox = (url) => {
     setCurrentImage(url);
     setIsPhotoLightboxOpen(true);
   };
 
-  const openVideoLightbox = (url: React.SetStateAction<string>) => {
+  const openVideoLightbox = (url) => {
     setCurrentVideo(url);
     setIsVideoLightboxOpen(true);
   };
@@ -37,14 +37,17 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-[40vh] sm:h-[60vh]">
-        <a href="../img/IMG_0151.jpg" target="_blank" rel="noopener noreferrer">
+        <div 
+          onClick={() => openPhotoLightbox("../img/IMG_0151.jpg")}
+          className="cursor-pointer w-full h-full"
+        >
           <img
             src="../img/IMG_0151.jpg"
             alt="Apartment Hero"
-            className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
+            className="w-full h-full object-cover hover:opacity-90 transition-opacity"
             loading="lazy"
           />
-        </a>
+        </div>
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center pointer-events-none">
           <div className="text-center text-white px-4">
             <h1 className="text-2xl sm:text-4xl font-bold mb-4">
