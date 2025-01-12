@@ -88,12 +88,20 @@ function App() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <a 
-              href="https://example.com/video1"
+              href="../VID/IMG_0157.MOV"
               target="_blank"
               rel="noopener noreferrer"
               className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors"
             >
-              <p className="text-gray-600">Video Tour 1</p>
+              <p className="text-gray-600">BED 01</p>
+            </a>
+            <a 
+              href="./VID/IMG_0157.mp4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors"
+            >
+              <p className="text-gray-600">BED 02</p>
             </a>
             <a 
               href="https://example.com/video2"
@@ -101,8 +109,17 @@ function App() {
               rel="noopener noreferrer"
               className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors"
             >
-              <p className="text-gray-600">Video Tour 2</p>
+              <p className="text-gray-600">HALL</p>
             </a>
+            <a 
+              href="https://example.com/video2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors"
+            >
+              <p className="text-gray-600">BATHROOM</p>
+            </a>
+            
           </div>
         </div>
       </section>
