@@ -1,7 +1,6 @@
 import React from 'react';
 import { Phone, Mail, Home, Instagram, Twitter, Linkedin, Camera, Video } from 'lucide-react';
 
-
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -58,8 +57,11 @@ function App() {
               '../IMG/IMG_0150.jpg',
               '../IMG/IMG_0147.jpg',
               '../IMG/IMG_0152.jpg',
-              '../IMG/IMG_0153.jpg',
-              
+              '../IMG/IMG_0160.jpg',
+              '../IMG/IMG_0161.jpg',
+              '../IMG/IMG_0162.jpg',
+              '../IMG/IMG_0163.jpg',
+              '../IMG/IMG_0164.jpg',
             ].map((url, index) => (
               <a
                 key={index}
@@ -87,39 +89,88 @@ function App() {
             <h2 className="text-3xl font-bold mt-4">Property Videos</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Video 1 */}
             <a 
-              href="../VID/IMG_0157.MOV"
+              href="../VID/IMG_0157.mp4"
               target="_blank"
               rel="noopener noreferrer"
-              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors"
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative"
             >
-              <p className="text-gray-600">BED 01</p>
+              <video 
+                className="rounded-lg object-cover w-full h-full"
+                muted
+                loop
+                autoPlay
+              >
+                <source src="../VID/IMG_0157.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">BED 01</p>
+              </div>
             </a>
+
+            {/* Video 2 */}
             <a 
-              href="./VID/IMG_0157.mp4"
+              href="../VID/IMG_0158.mp4"
               target="_blank"
               rel="noopener noreferrer"
-              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors"
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative"
             >
-              <p className="text-gray-600">BED 02</p>
+              <video 
+                className="rounded-lg object-cover w-full h-full"
+                muted
+                loop
+                autoPlay
+              >
+                <source src="../VID/IMG_0158.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">BED 02</p>
+              </div>
             </a>
+            {/* Video 3 */}
             <a 
-              href="https://example.com/video2"
+              href="../VID/IMG_0157.mp4"
               target="_blank"
               rel="noopener noreferrer"
-              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors"
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative"
             >
-              <p className="text-gray-600">HALL</p>
+              <video 
+                className="rounded-lg object-cover w-full h-full"
+                muted
+                loop
+                autoPlay
+              >
+                <source src="../VID/IMG_0157.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">HALL</p>
+              </div>
             </a>
+
+            {/* Video 4 */}
             <a 
-              href="https://example.com/video2"
+              href="../VID/IMG_0159.mp4"
               target="_blank"
               rel="noopener noreferrer"
-              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors"
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative"
             >
-              <p className="text-gray-600">BATHROOM</p>
+              <video 
+                className="rounded-lg object-cover w-full h-full"
+                muted
+                loop
+                autoPlay
+              >
+                <source src="../VID/IMG_0159.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">BATHROOM</p>
+              </div>
             </a>
-            
           </div>
         </div>
       </section>
