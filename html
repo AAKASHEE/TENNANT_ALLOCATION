@@ -1,37 +1,43 @@
+// Importing necessary modules
 import React, { useState } from "react";
 import {
+  Phone,
+  Mail,
+  Home,
+  Instagram,
+  Twitter,
+  Linkedin,
   Camera,
   Video,
+  Menu,
   X,
-  Instagram,
-  Linkedin
 } from "lucide-react";
+// import { ImageGrid } from "./src/ImageGallery/ImageGrid";
+// import { Lightbox } from "./src/ImageGallery/Lightbox";
+// import { useLightboxControls } from "./src/hooks/useLightboxControls";
 
 function App() {
-  // Separate states for photo and video lightboxes
-  const [isPhotoLightboxOpen, setIsPhotoLightboxOpen] = useState(false);
-  const [isVideoLightboxOpen, setIsVideoLightboxOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
-  const [currentVideo, setCurrentVideo] = useState("");
+  // States for lightbox control
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false); // Lightbox visibility
+  const [currentImage, setCurrentImage] = useState(""); // The current image to show in the lightbox
+  const [currentVideo, setCurrentVideo] = useState(""); // The current image to show in the lightbox
 
-  // Separate functions for photo and video lightboxes
-  const openPhotoLightbox = (url: React.SetStateAction<string>) => {
+  // Function to open the lightbox
+
+  const openLightbox = (url: string): void => {
     setCurrentImage(url);
-    setIsPhotoLightboxOpen(true);
+    setIsLightboxOpen(true);
   };
-
-  const openVideoLightbox = (url: React.SetStateAction<string>) => {
+  const openVideoLightbox = (url: string): void => {
     setCurrentVideo(url);
-    setIsVideoLightboxOpen(true);
+    setIsLightboxOpen(true);
   };
 
-  const closePhotoLightbox = () => {
-    setIsPhotoLightboxOpen(false);
+  // Function to close the lightbox
+  const closeLightbox = () => {
+    setIsLightboxOpen(false);
   };
 
-  const closeVideoLightbox = () => {
-    setIsVideoLightboxOpen(false);
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -79,12 +85,12 @@ function App() {
               { url: '../img/IMG_0162.jpg', caption: 'Bathroom' },
               { url: '../img/IMG_0163.jpg', caption: 'Hallway' },
             ].map((item, index) => (
-              <div key={index} className="relative">
+              <div key={index}>
                 <img
                   src={item.url}
                   alt={`Apartment view ${index + 1}`}
                   className="rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer"
-                  onClick={() => openPhotoLightbox(item.url)}
+                  onClick={() => openLightbox(item.url)} // Open lightbox on image click
                   loading="lazy"
                 />
                 <p className="mt-2 text-center text-gray-600">{item.caption}</p>
@@ -94,26 +100,25 @@ function App() {
         </div>
       </section>
 
-      {/* Photo Lightbox */}
-      {isPhotoLightboxOpen && (
+      {/* Lightbox */}
+      {isLightboxOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
           <div className="relative max-w-3xl w-full">
             <button
-              onClick={closePhotoLightbox}
+              onClick={closeLightbox}
               className="absolute top-2 right-2 text-white text-3xl"
             >
-              <X className="h-6 w-6" />
+              <X />
             </button>
             <img
               src={currentImage}
               alt="Selected view"
-              className="max-w-full max-h-[80vh] object-contain mx-auto"
+              className="max-w-full max-h-[80vh] object-contain"
             />
           </div>
         </div>
       )}
-
-      {/* Videos Section */}
+       {/* Video Section */}
       <section id="videos" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -122,51 +127,119 @@ function App() {
             <p className="text-lg mt-2 text-gray-600">Tap on the videos to view</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              { url: '../vid/IMG_0158.mp4', title: 'BEDROOM 01' },
-              { url: '../vid/IMG_0157.mp4', title: 'BEDROOM 02' },
-              { url: '../vid/IMG_0167.mp4', title: 'HALL' },
-              { url: '../vid/IMG_0168.mp4', title: 'KITCHEN' },
-              { url: '../vid/IMG_0159.mp4', title: 'BATHROOM' },
-            ].map((video, index) => (
-              <div
-                key={index}
-                onClick={() => openVideoLightbox(video.url)}
-                className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative cursor-pointer"
+            {/* Video 1 */}
+            <div
+              onClick={() => openVideoLightbox("../vid/IMG_0158.mp4")}
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative cursor-pointer"
+            >
+              <video
+                className="rounded-lg object-cover w-full h-full"
+                muted
+                loop
+                autoPlay
               >
-                <video
-                  className="rounded-lg object-cover w-full h-full"
-                  muted
-                  loop
-                  autoPlay
-                >
-                  <source src={video.url} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                  <p className="text-white text-lg font-semibold">{video.title}</p>
-                </div>
+                <source src="../vid/IMG_0158.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">BEDROOM 01</p>
               </div>
-            ))}
+            </div>
+
+            {/* Video 2 */}
+            <div
+              onClick={() => openVideoLightbox("../vid/IMG_0157.mp4")}
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative cursor-pointer"
+            >
+              <video
+                className="rounded-lg object-cover w-full h-full"
+                muted
+                loop
+                autoPlay
+              >
+                <source src="../vid/IMG_0157.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">BEDROOM 02</p>
+              </div>
+            </div>
+
+            {/* Video 3 */}
+            <div
+              onClick={() => openVideoLightbox("../vid/IMG_0167.mp4")}
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative cursor-pointer"
+            >
+              <video
+                className="rounded-lg object-cover w-full h-full"
+                muted
+                loop
+                autoPlay
+              >
+                <source src="../vid/IMG_0167.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">HALL</p>
+              </div>
+            </div>
+
+            {/* Video 4 */}
+            <div
+              onClick={() => openVideoLightbox("../vid/IMG_0168.mp4")}
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative cursor-pointer"
+            >
+              <video
+                className="rounded-lg object-cover w-full h-full"
+                muted
+                loop
+                autoPlay
+              >
+                <source src="../vid/IMG_0168.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">KITCHEN</p>
+              </div>
+            </div>
+
+            {/* Video 5 */}
+            <div
+              onClick={() => openVideoLightbox("../vid/IMG_0159.mp4")}
+              className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative cursor-pointer"
+            >
+              <video
+                className="rounded-lg object-cover w-full h-full"
+                muted
+                loop
+                autoPlay
+              >
+                <source src="../vid/IMG_0159.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <p className="text-white text-lg font-semibold">BATHROOM</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Video Lightbox */}
-      {isVideoLightboxOpen && (
+      {isLightboxOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
           <div className="relative max-w-3xl w-full">
             <button
-              onClick={closeVideoLightbox}
+              onClick={closeLightbox}
               className="absolute top-2 right-2 text-white text-3xl"
             >
-              <X className="h-6 w-6" />
+              <X />
             </button>
             <video
-              className="max-w-full max-h-[80vh] object-contain mx-auto"
+              className="max-w-full max-h-[80vh] object-contain"
               controls
               autoPlay
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()} // Prevent closing when video is clicked
             >
               <source src={currentVideo} type="video/mp4" />
               Your browser does not support the video tag.
