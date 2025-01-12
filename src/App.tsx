@@ -50,9 +50,9 @@ function App() {
 
         {/* Hero Section */}
         <div className="relative h-[60vh]">
-          <a href='../IMG/IMG_0151.jpg' target="_blank" rel="noopener noreferrer">
+          <a href='../img/IMG_0151.jpg' target="_blank" rel="noopener noreferrer">
             <img 
-              src='../IMG/IMG_0151.jpg'
+              src='../img/IMG_0151.jpg'
               alt="Apartment Hero"
               className="w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
               loading="lazy"
@@ -81,15 +81,15 @@ function App() {
             </div>
             <div className="photo-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { url: '../IMG/IMG_0149.jpg', caption: 'Entrance' },
-                { url: '../IMG/IMG_0150.jpg', caption: 'Front View' },
-                { url: '../IMG/IMG_0147.jpg', caption: 'Bedroom 1' },
-                { url: '../IMG/IMG_0160.jpg', caption: 'Bedroom 2' },
-                { url: '../IMG/IMG_0152.jpg', caption: 'Street View:Towards Main Road' },
-                { url: '../IMG/IMG_0153.jpg', caption: 'Street View' },
-                { url: '../IMG/IMG_0161.jpg', caption: 'Hall' },
-                { url: '../IMG/IMG_0162.jpg', caption: 'Bathroom' },
-                { url: '../IMG/IMG_0163.jpg', caption: 'Hallway' },
+                { url: '../img/IMG_0149.jpg', caption: 'Entrance' },
+                { url: '../img/IMG_0150.jpg', caption: 'Front View' },
+                { url: '../img/IMG_0147.jpg', caption: 'Bedroom 1' },
+                { url: '../img/IMG_0160.jpg', caption: 'Bedroom 2' },
+                { url: '../img/IMG_0152.jpg', caption: 'Street View:Towards Main Road' },
+                { url: '../img/IMG_0153.jpg', caption: 'Street View' },
+                { url: '../img/IMG_0161.jpg', caption: 'Hall' },
+                { url: '../img/IMG_0162.jpg', caption: 'Bathroom' },
+                { url: '../img/IMG_0163.jpg', caption: 'Hallway' },
               ].map((item, index) => (
                 <a
                   key={index}
@@ -123,7 +123,7 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Video 1 */}
               <a 
-                href="../VID/IMG_0158.mp4"
+                href="../vid/IMG_0158.mp4"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative"
@@ -134,7 +134,7 @@ function App() {
                   loop
                   autoPlay
                 >
-                  <source src="../VID/IMG_0158.mp4" type="video/mp4" />
+                  <source src="../vid/IMG_0158.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
@@ -144,7 +144,7 @@ function App() {
 
               {/* Video 2 */}
               <a 
-                href="../VID/IMG_0157.mp4"
+                href="../vid/IMG_0157.mp4"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative"
@@ -155,7 +155,7 @@ function App() {
                   loop
                   autoPlay
                 >
-                  <source src="../VID/IMG_0157.mp4" type="video/mp4" />
+                  <source src="../vid/IMG_0157.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
@@ -165,7 +165,7 @@ function App() {
 
               {/* Video 3 */}
               <a 
-                href="../VID/IMG_0167.mp4"
+                href="../vid/IMG_0167.mp4"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative"
@@ -176,7 +176,7 @@ function App() {
                   loop
                   autoPlay
                 >
-                  <source src="../VID/IMG_0167.mp4" type="video/mp4" />
+                  <source src="../vid/IMG_0167.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
@@ -197,7 +197,7 @@ function App() {
                   loop
                   autoPlay
                 >
-                  <source src="../VID/IMG_0168.mp4" type="video/mp4" />
+                  <source src="../vid/IMG_0168.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
@@ -207,7 +207,7 @@ function App() {
 
               {/* Video 5 */}
               <a 
-                href="../VID/IMG_0159.mp4"
+                href="../vid/IMG_0159.mp4"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative"
@@ -218,7 +218,7 @@ function App() {
                   loop
                   autoPlay
                 >
-                  <source src="../VID/IMG_0159.mp4" type="video/mp4" />
+                  <source src="../vid/IMG_0159.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
@@ -319,7 +319,7 @@ function App() {
       className="block"
     >
       <img 
-        src="../IMG/IMG_D835C67C3AEF-1.jpeg" 
+        src="../img/IMG_D835C67C3AEF-1.jpeg" 
         alt="Map Location"
         className="w-full h-auto cursor-pointer"
       />
