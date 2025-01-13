@@ -65,6 +65,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white rounded-lg p-6 w-96">
         <h2 className="text-2xl font-semibold mb-4">Contact Tenant</h2>
+        <p className="text-2xl  mb-4" >Tap on the coloured line</p>
         <p className="text-gray-700 mb-2">
           <strong>Name:</strong> Akash Patra
         </p>
@@ -74,7 +75,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
         <p className="text-gray-700 mb-2">
           <strong>Email:</strong>{" "}
           <a href="mailto:akashpatra@gmail.com" className="text-blue-600 underline">
-            aakashpatra253@gmail.com
+            aakashpatra253@gmail.com  
           </a>
         </p>
         <p className="text-gray-700 mb-4">
