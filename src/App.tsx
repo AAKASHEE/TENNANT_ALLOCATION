@@ -406,27 +406,28 @@ function HouseTourPage() {
         </div>
       )}
 
-      {isVideoLightboxOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
-          <div className="relative max-w-3xl w-full">
-            <button
-              onClick={closeVideoLightbox}
-              className="absolute top-2 right-2 text-white text-3xl"
-            >
-              <X className="h-6 w-6" />
-            </button>
-            <video
-              className="max-w-full max-h-[80vh] object-contain mx-auto"
-              controls
-              autoPlay
-              onClick={(e) => e.stopPropagation()}
-            >
-              <source src={currentVideo} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      )}
+{isVideoLightboxOpen && (
+  <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center cursor-pointer">
+    <div className="relative max-w-3xl w-full">
+      <button
+        onClick={closeVideoLightbox}
+        className="absolute top-2 right-2 text-white text-3xl z-50"
+        style={{ pointerEvents: "auto" }}
+      >
+        <X className="h-6 w-6" />
+      </button>
+      <video
+        className="max-w-full max-h-[80vh] object-contain mx-auto"
+        controls
+        autoPlay
+        onClick={(e) => e.stopPropagation()} // Prevent video click from closing the lightbox
+      >
+        <source src={currentVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+)}
 
       <ContactDialog 
         isOpen={isDialogOpen} 
