@@ -57,6 +57,8 @@ function App() {
               <li>2 SEPARATE ROOMS</li>
               <li>BED AND ALMIRAH EQUIPPED</li>
               <li>GEYSER + ATTACHED BATHROOM</li>
+              <li>24 HR WATER AND ELECTRICITY SUPPLY</li>
+              <li>VICINITY OF COLLEGE AND MAIN MARKET AREA</li>
             </ul>
           </div>
         </div>
