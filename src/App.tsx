@@ -202,7 +202,7 @@ function App() {
           <br />
           <span className="font-bold">SECURITY DEPOSIT:</span> <span className="font-bold">35,000</span><p>One month rent will be deducted for  <span className="font-bold">Paint Charges</span>.You will be provided with <span className="font-bold">Rental Agreement Authorized Signature</span></p>
           <br />
-          <span className="font-bold">ALLOWED:</span> For 2 Students belonging to <span className="font-bold">1st/2nd Year:</span>
+          <span className="font-bold">ALLOWED:</span> For 2 Students belonging to <span className="font-bold">1st/2nd Year(Male Only):</span>
           <br />
           <br />
           <span className="font-bold">LOCATION:</span>113,GROUND FLOOR,5TH CROSS, TEACHER'S COLONY, KUMARSWAMY LAYOUT,NEAR DAYANANDA COLLEGE(200 ),NEAR GSI</p>
