@@ -197,7 +197,7 @@ function HomePage() {
 // First, uncomment and fix the AniNavbar component
 function AniNavbar() {
   const [text, setText] = useState('');
-  const initialText = "DDW ";
+  const initialText = "DDW we've got your back";
   const newText = " HHop in to Never Settle Again!";
   let index = 0;
 
