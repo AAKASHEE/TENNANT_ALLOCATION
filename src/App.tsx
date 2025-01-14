@@ -125,7 +125,7 @@ function HomePage() {
             <div className="flex items-center">
               <AniNavbar />
               <div style={{ backgroundColor: "white", padding: "10px", display: "inline-block" }}>
-                <img src="../../img/logo.jpeg" alt="Logo" width="100" height="100" />
+                <img src="/img/favicon.ico/logo.jpeg" alt="Logo" width="100" height="100" />
               </div>
             </div>
           </div>
