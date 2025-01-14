@@ -1,8 +1,7 @@
-import { SetStateAction, useState,useEffect } from "react";
+import { SetStateAction, useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
   Home,
-  Building2,
   Camera,
   Video,
   X,
@@ -20,7 +19,7 @@ const houseData = [
     description: "Kumarswamy Layout, Near Dayananda Sagar College",
     image: "../../img/IMG_4845.jpg",
     price: "₹13,800/month",
-    amenities: ["2 BHK", "Semi-Furnished", "24/7 Water Supply", "Geyser","College Distance: 150m","Main market-vicinity"],
+    amenities: ["2 BHK", "Semi-Furnished", "24/7 Water Supply", "Geyser", "College Distance: 150m", "Main market-vicinity"],
     photos: [
       { url: '../../img/IMG_0149.jpg', caption: 'Entrance' },
       { url: '../../img/IMG_0150.jpg', caption: 'Front View' },
@@ -77,7 +76,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
         <p className="text-gray-700 mb-2">
           <strong>Email:</strong>{" "}
           <a href="mailto:akashpatra@gmail.com" className="text-blue-600 underline">
-            aakashpatra253@gmail.com  
+            aakashpatra253@gmail.com
           </a>
         </p>
         <p className="text-gray-700 mb-4">
@@ -124,21 +123,10 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              {/* <Building2 className="h-8 w-8 text-blue-600" /> */}
-              <span 
-                      className="ml-2 text-xl font-bold text-gray-900" 
-                      style={{ fontFamily: "'Poppins', sans-serif" }}
-                    >
-                      DW <br /> Hop in to never settle
-              </span>
-              
-
+              <AniNavbar />
               <div style={{ backgroundColor: "white", padding: "10px", display: "inline-block" }}>
-                   <img src="../../img/logo.jpeg" alt="Logo"  width="100" height="100"  />
+                <img src="../../img/logo.jpeg" alt="Logo" width="100" height="100" />
               </div>
-              
-
-
             </div>
           </div>
         </div>
@@ -198,22 +186,22 @@ function HomePage() {
         </div>
       </main>
 
-      <ContactDialog 
-        isOpen={isDialogOpen} 
-        onClose={() => setIsDialogOpen(false)} 
+      <ContactDialog
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
       />
     </div>
   );
 }
-//Animated bar
+
+// First, uncomment and fix the AniNavbar component
 function AniNavbar() {
   const [text, setText] = useState('');
-  const initialText = "DW";
-  const newText = "Hop in to never settle";
+  const initialText = "DDW ";
+  const newText = " HHop in to Never Settle Again!";
   let index = 0;
 
   useEffect(() => {
-    // Function to simulate typing and erasing text
     const typeAndErase = () => {
       if (index < initialText.length) {
         setText((prev) => prev + initialText.charAt(index));
@@ -224,49 +212,28 @@ function AniNavbar() {
       } else if (index < initialText.length * 2 + newText.length) {
         setText((prev) => prev + newText.charAt(index - initialText.length * 2));
         index++;
+      } else {
+        // Reset index to start over
+        index = 0;
+        setText('');
       }
     };
 
-    // Start the animation, repeat every 100 milliseconds
     const interval = setInterval(typeAndErase, 100);
-
-    // Clear the interval when the component unmounts
     return () => clearInterval(interval);
   }, []);
 
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              {/* <Building2 className="h-8 w-8 text-blue-600" /> */}
-              <span 
-                      className="ml-2 text-xl font-bold text-gray-900" 
-                      style={{ fontFamily: "'Poppins', sans-serif" }}
-                    >
-                      {text} {/* This will display the animated text */}
-             </span>
-
-              <div style={{ backgroundColor: "white", padding: "10px", display: "inline-block" }}>
-                   <img src="../../img/logo.jpeg" alt="Logo"  width="100" height="100"  />
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <div>
-      </div>
-
-        <ContactDialog 
-          isOpen={isDialogOpen} 
-          onClose={() => setIsDialogOpen(true)} />
-      
+    <div className="text-center py-4 bg-gray-100">
+      <span
+        className="text-xl font-bold text-gray-900"
+        style={{ fontFamily: "'Poppins', sans-serif" }}
+      >
+        {text}
+      </span>
     </div>
   );
-};
+}
 
 
 // House Tour Page
@@ -276,6 +243,7 @@ function HouseTourPage() {
   const [currentImage, setCurrentImage] = useState("");
   const [currentVideo, setCurrentVideo] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
 
   const house = houseData[0]; // For demo purposes, showing first house
   const openPhotoLightbox = (url: SetStateAction<string>) => {
@@ -412,7 +380,7 @@ function HouseTourPage() {
               <p className="text-lg text-gray-600">
                 This flat is located in a <span className="font-bold">prime area</span> within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, convenient access to transportation, and shopping centers. The flat comes with all necessary amenities, ensuring a comfortable living experience. Additionally, the surrounding neighborhood is quiet and safe, making it an ideal choice for <span className="font-bold">STUDENTS</span>.
               </p>
-                <p className="text-lg text-gray-600">
+              <p className="text-lg text-gray-600">
                 The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, and a comfortable living space. The attached bathroom is equipped with a geyser for hot water and well-maintained fittings. For those who enjoy natural light, the large windows in the living areas provide a warm and inviting atmosphere throughout the day.
               </p>
               <p className="text-lg text-gray-600">
@@ -485,32 +453,32 @@ function HouseTourPage() {
       )}
 
       {isVideoLightboxOpen && (
-  <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center cursor-pointer">
-    <div className="relative max-w-3xl w-full">
-      <button
-        onClick={closeVideoLightbox}
-        className="absolute top-2 right-2 text-white text-3xl z-50"
-        style={{ pointerEvents: "auto" }}
-      >
-        <X className="h-6 w-6" />
-      </button>
-      <video
-        className="max-w-full max-h-[80vh] object-contain mx-auto"
-        controls
-        autoPlay
-        onClick={(e) => e.stopPropagation()} // Prevent video click from closing the lightbox
-      >
-        <source src={currentVideo} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
-  </div>
-)}
+        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center cursor-pointer">
+          <div className="relative max-w-3xl w-full">
+            <button
+              onClick={closeVideoLightbox}
+              className="absolute top-2 right-2 text-white text-3xl z-50"
+              style={{ pointerEvents: "auto" }}
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <video
+              className="max-w-full max-h-[80vh] object-contain mx-auto"
+              controls
+              autoPlay
+              onClick={(e) => e.stopPropagation()} // Prevent video click from closing the lightbox
+            >
+              <source src={currentVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
 
 
-      <ContactDialog 
-        isOpen={isDialogOpen} 
-        onClose={() => setIsDialogOpen(false)} 
+      <ContactDialog
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
       />
     </div>
   );
@@ -522,14 +490,17 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={
+          <>
+            <AniNavbar />
+            <HomePage />
+          </>
+        } />
         <Route path="/house/:id" element={<HouseTourPage />} />
-        <Route path="/" element={<AniNavbar />} />
       </Routes>
     </Router>
   );
 }
-
 
 
 export default App;
