@@ -367,7 +367,6 @@ function HouseTourPage() {
                 <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-opacity flex items-center justify-center">
                   <p className="text-white text-lg font-semibold bg-black bg-opacity-50 px-4 py-2 rounded">
                     {video.title}
-                    <span className="block text-sm mt-1">Tap to view full video</span>
                   </p>
                 </div>
               </div>
