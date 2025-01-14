@@ -348,19 +348,34 @@ function HouseTourPage() {
               <div
                 key={index}
                 onClick={() => openVideoLightbox(video.url)}
-                className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative cursor-pointer"
+                className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative cursor-pointer group"
               >
                 <video
                   className="rounded-lg object-cover w-full h-full"
                   muted
                   loop
+                  playsInline
+                  preload="metadata"
                   autoPlay
+                  onMouseOver={(e) => {
+                    const video = e.target as HTMLVideoElement;
+                    video.play().catch(() => {
+                      // Handle any autoplay errors silently
+                    });
+                  }}
+                  onMouseOut={(e) => {
+                    const video = e.target as HTMLVideoElement;
+                    video.pause();
+                    video.currentTime = 0;
+                  }}
                 >
                   <source src={video.url} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                  <p className="text-white text-lg font-semibold">{video.title}</p>
+                <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-opacity flex items-center justify-center">
+                  <p className="text-white text-lg font-semibold bg-black bg-opacity-50 px-4 py-2 rounded">
+                    {video.title}
+                  </p>
                 </div>
               </div>
             ))}
@@ -453,7 +468,7 @@ function HouseTourPage() {
       )}
 
       {isVideoLightboxOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center cursor-pointer">
+        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
           <div className="relative max-w-3xl w-full">
             <button
               onClick={closeVideoLightbox}
@@ -462,15 +477,26 @@ function HouseTourPage() {
             >
               <X className="h-6 w-6" />
             </button>
-            <video
-              className="max-w-full max-h-[80vh] object-contain mx-auto"
-              controls
-              autoPlay
-              onClick={(e) => e.stopPropagation()} // Prevent video click from closing the lightbox
-            >
-              <source src={currentVideo} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <div className="video-container relative">
+              <video
+                className="max-w-full max-h-[80vh] object-contain mx-auto cursor-pointer"
+                controls
+                playsInline
+                preload="auto"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const video = e.target as HTMLVideoElement;
+                  if (video.paused) {
+                    video.play();
+                  } else {
+                    video.pause();
+                  }
+                }}
+              >
+                <source src={currentVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
         </div>
       )}
