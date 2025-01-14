@@ -12,7 +12,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'video-player': ['./src/components/video-player'],
+          // Remove the video-player chunk since we don't have that component
         },
       },
     },
