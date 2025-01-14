@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useState,useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
   Home,
@@ -9,6 +9,8 @@ import {
   Instagram,
   Linkedin
 } from "lucide-react";
+import '@fontsource/poppins';
+
 
 // Data for house locations and links
 const houseData = [
@@ -111,6 +113,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
   );
 }
 
+
 // Homepage Component
 function HomePage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -121,8 +124,21 @@ function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Building2 className="h-8 w-8 text-blue-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">PropertyFinder</span>
+              {/* <Building2 className="h-8 w-8 text-blue-600" /> */}
+              <span 
+                      className="ml-2 text-xl font-bold text-gray-900" 
+                      style={{ fontFamily: "'Poppins', sans-serif" }}
+                    >
+                      DW <br /> Hop in to never settle
+              </span>
+              
+
+              <div style={{ backgroundColor: "white", padding: "10px", display: "inline-block" }}>
+                   <img src="../../img/logo.jpeg" alt="Logo"  width="100" height="100"  />
+              </div>
+              
+
+
             </div>
           </div>
         </div>
@@ -189,6 +205,69 @@ function HomePage() {
     </div>
   );
 }
+//Animated bar
+function AniNavbar() {
+  const [text, setText] = useState('');
+  const initialText = "DW";
+  const newText = "Hop in to never settle";
+  let index = 0;
+
+  useEffect(() => {
+    // Function to simulate typing and erasing text
+    const typeAndErase = () => {
+      if (index < initialText.length) {
+        setText((prev) => prev + initialText.charAt(index));
+        index++;
+      } else if (index < initialText.length * 2) {
+        setText((prev) => prev.slice(0, -1));
+        index++;
+      } else if (index < initialText.length * 2 + newText.length) {
+        setText((prev) => prev + newText.charAt(index - initialText.length * 2));
+        index++;
+      }
+    };
+
+    // Start the animation, repeat every 100 milliseconds
+    const interval = setInterval(typeAndErase, 100);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <nav className="bg-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              {/* <Building2 className="h-8 w-8 text-blue-600" /> */}
+              <span 
+                      className="ml-2 text-xl font-bold text-gray-900" 
+                      style={{ fontFamily: "'Poppins', sans-serif" }}
+                    >
+                      {text} {/* This will display the animated text */}
+             </span>
+
+              <div style={{ backgroundColor: "white", padding: "10px", display: "inline-block" }}>
+                   <img src="../../img/logo.jpeg" alt="Logo"  width="100" height="100"  />
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div>
+      </div>
+
+        <ContactDialog 
+          isOpen={isDialogOpen} 
+          onClose={() => setIsDialogOpen(true)} />
+      
+    </div>
+  );
+};
+
 
 // House Tour Page
 function HouseTourPage() {
@@ -199,7 +278,6 @@ function HouseTourPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const house = houseData[0]; // For demo purposes, showing first house
-
   const openPhotoLightbox = (url: SetStateAction<string>) => {
     setCurrentImage(url);
     setIsPhotoLightboxOpen(true);
@@ -406,7 +484,7 @@ function HouseTourPage() {
         </div>
       )}
 
-{isVideoLightboxOpen && (
+      {isVideoLightboxOpen && (
   <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center cursor-pointer">
     <div className="relative max-w-3xl w-full">
       <button
@@ -429,6 +507,7 @@ function HouseTourPage() {
   </div>
 )}
 
+
       <ContactDialog 
         isOpen={isDialogOpen} 
         onClose={() => setIsDialogOpen(false)} 
@@ -437,6 +516,7 @@ function HouseTourPage() {
   );
 }
 
+
 // App Component
 function App() {
   return (
@@ -444,9 +524,12 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/house/:id" element={<HouseTourPage />} />
+        <Route path="/" element={<AniNavbar />} />
       </Routes>
     </Router>
   );
 }
+
+
 
 export default App;

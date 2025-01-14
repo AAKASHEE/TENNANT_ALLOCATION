@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Animation</title>
+    <style>
+        .text {
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="text" id="animatedText"></div>
+
+    <script>
+        const initialText = "Tired of staying in PG or flat handing hefty sums";
+        const newText = "DW, we've got your back. Hop in to Never Settle again!";
+        let index = 0;
+        let textElement = document.getElementById('animatedText');
+        
+        // Function to simulate typing and erasing text
+        function typeAndErase() {
+            // First, type the initial text
+            if (index < initialText.length) {
+                textElement.textContent += initialText.charAt(index);
+                index++;
+            } 
+            // Then erase the text
+            else if (index < initialText.length * 2) {
+                textElement.textContent = textElement.textContent.slice(0, -1);
+                index++;
+            } 
+            // Finally, type the new message
+            else if (index < initialText.length * 2 + newText.length) {
+                textElement.textContent += newText.charAt(index - initialText.length * 2);
+                index++;
+            }
+        }
+
+        // Start the animation, repeat every 100 milliseconds
+        setInterval(typeAndErase, 50);
+    </script>
+</body>
+</html>
