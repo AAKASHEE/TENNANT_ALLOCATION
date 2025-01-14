@@ -19,7 +19,7 @@ const houseData = [
     description: "Kumarswamy Layout, Near Dayananda Sagar College",
     image: "../../img/IMG_4845.jpg",
     price: "₹13,800/month",
-    amenities: ["2 BHK", "Semi-Furnished", "24/7 Water Supply", "Geyser", "College Distance: 150m", "Main market-vicinity"],
+    amenities: ["2 BHK", "Semi-Furnished", "24/7 Water Supply", "Geyser", "Water + Electricity Bill Excluded", "College Distance: 150m", "Main market-vicinity"],
     photos: [
       { url: '../../img/IMG_0149.jpg', caption: 'Entrance' },
       { url: '../../img/IMG_0150.jpg', caption: 'Front View' },
@@ -243,7 +243,7 @@ function HouseTourPage() {
   const [currentImage, setCurrentImage] = useState("");
   const [currentVideo, setCurrentVideo] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
+  const [playingVideoId, setPlayingVideoId] = useState<number | null>(null);
 
   const house = houseData[0]; // For demo purposes, showing first house
   const openPhotoLightbox = (url: SetStateAction<string>) => {
@@ -262,6 +262,14 @@ function HouseTourPage() {
 
   const closeVideoLightbox = () => {
     setIsVideoLightboxOpen(false);
+  };
+
+  const handleVideoPreviewClick = (index: number) => {
+    if (playingVideoId === index) {
+      openVideoLightbox(house.videos[index].url);
+    } else {
+      setPlayingVideoId(index);
+    }
   };
 
   return (
@@ -347,7 +355,7 @@ function HouseTourPage() {
             {house.videos.map((video, index) => (
               <div
                 key={index}
-                onClick={() => openVideoLightbox(video.url)}
+                onClick={() => handleVideoPreviewClick(index)}
                 className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors relative cursor-pointer group"
               >
                 <video
@@ -356,18 +364,8 @@ function HouseTourPage() {
                   loop
                   playsInline
                   preload="metadata"
-                  autoPlay
-                  onMouseOver={(e) => {
-                    const video = e.target as HTMLVideoElement;
-                    video.play().catch(() => {
-                      // Handle any autoplay errors silently
-                    });
-                  }}
-                  onMouseOut={(e) => {
-                    const video = e.target as HTMLVideoElement;
-                    video.pause();
-                    video.currentTime = 0;
-                  }}
+                  autoPlay={playingVideoId === index}
+                  onEnded={() => setPlayingVideoId(null)}
                 >
                   <source src={video.url} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -375,6 +373,7 @@ function HouseTourPage() {
                 <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-opacity flex items-center justify-center">
                   <p className="text-white text-lg font-semibold bg-black bg-opacity-50 px-4 py-2 rounded">
                     {video.title}
+                    {playingVideoId !== index && <span className="block text-sm mt-1">Tap to play</span>}
                   </p>
                 </div>
               </div>
@@ -468,7 +467,13 @@ function HouseTourPage() {
       )}
 
       {isVideoLightboxOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center"
+          onClick={() => {
+            setPlayingVideoId(null);
+            closeVideoLightbox();
+          }}
+        >
           <div className="relative max-w-3xl w-full">
             <button
               onClick={closeVideoLightbox}
