@@ -409,7 +409,7 @@ function HouseTourPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">Find Me Here<br /> CLICK ON IT</h2>
           <a
-            href="https://www.google.com/maps/@12.9111165,77.5666326,16z?entry=ttu&g_ep=EgoyMDI1MDEwOC4wIKXMDSoASAFQAw%3D%3D"
+            href="https://www.google.com/maps?q=12.9113080,77.5665138"
             target="_blank"
             rel="noopener noreferrer"
             className="block"
