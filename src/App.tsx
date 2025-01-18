@@ -593,20 +593,20 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold">Follow Us</h3>
             <div className="flex space-x-4">
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/aakaas.he" target="_blank" rel="noopener noreferrer">
                 <Instagram className="text-white h-6 w-6" />
               </a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/aakashee/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="text-white h-6 w-6" />
               </a>
-              <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/AAKASHEEX" target="_blank" rel="noopener noreferrer">
                 <X className="text-white h-6 w-6" />
               </a>
             </div>
           </div>
         </div>
         <div className="mt-8 text-center text-gray-400">
-          &copy; 2025 Property Listings. All Rights Reserved.
+          &copy; 2025 DWella. All Rights Reserved.
         </div>
       </div>
     </footer>
