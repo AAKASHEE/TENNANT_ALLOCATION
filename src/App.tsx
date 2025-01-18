@@ -443,20 +443,24 @@ const PropertyDetail = () => {
           </div>
         )}
 
-        {activeTab === 'videos' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {property.videos.map((video, index) => (
-              <div key={index} className="relative">
-                <video
-                  src={video.url}
-                  className="w-full h-64 object-cover rounded-lg"
-                  controls
-                />
-                <p className="mt-2 text-center text-gray-600">{video.title}</p>
-              </div>
-            ))}
-          </div>
-        )}
+{activeTab === 'videos' && (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {property.videos.map((video, index) => (
+      <div key={index} className="relative">
+        <video
+          src={video.url}
+          className="w-full h-64 object-cover rounded-lg"
+          autoPlay
+          muted
+          loop
+          playsInline// Ensures autoplay works on mobile devices
+          controls
+        />
+        <p className="mt-2 text-center text-gray-600">{video.title}</p>
+      </div>
+    ))}
+  </div>
+)}
 
 {activeTab === 'details' && (
   <div className="bg-white rounded-lg p-8">
