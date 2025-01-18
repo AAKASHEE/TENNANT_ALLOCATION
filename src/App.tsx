@@ -482,7 +482,7 @@ const PropertyDetail = () => {
                       className="block"
                     >
                       <img
-                        src="../../img/IMG_D835C67C3AEF-1.jpeg"
+                        src="../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
                         alt="Map Location"
                         className="w-full h-auto cursor-pointer"
                       />
