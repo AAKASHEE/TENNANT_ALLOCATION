@@ -78,18 +78,20 @@ const propertyData: Property[] = [
   },
   {
     id: ":2",
-    location: "227, 3rd Floor, SLV Residency",
-    description: "JP Nagar 6th Phase, Near Metro Station",
+    location: "",
+    description: "Kumarswamy Layout, Near Dayananda Sagar College",
     image: "/img/properties/property2/main.jpg",
-    price: "₹22,000/month",
+    price: "₹25,000/month",
     amenities: [
       "2 BHK",
       "Fully Furnished",
       "24/7 Power Backup",
-      "Air Conditioning",
       "Modular Kitchen",
       "Metro Distance: 500m",
-      "Shopping Mall: 1km"
+      "Main Market Vicinity",
+      "Balcony Access",
+      "Spacious Rooms",
+      "Each Bedrooms has Its Own attached Bathrooms"
     ],
     photos: [
       { url: '/img/properties/property2/living.jpg', caption: 'Living Room' },
