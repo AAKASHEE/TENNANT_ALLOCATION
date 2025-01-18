@@ -254,7 +254,6 @@ const HomePage = () => {
           ))}
         </div>
       </main>
-      <Footer />
     </div>
   );
 };
@@ -310,51 +309,97 @@ const PropertyDetail = () => {
       <div className="flex justify-center items-center min-h-screen">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800">Property not found!</h2>
-          <p className="text-gray-600">It seems like the property you're looking for doesn't exist. Try visiting the homepage.</p>
+          <p className="text-gray-600">The property you're looking for doesn't exist. Try visiting the homepage.</p>
           <a href="/" className="text-blue-600 underline mt-4">Go back to homepage</a>
         </div>
       </div>
     );
   }
 
-  const [activeTab, setActiveTab] = useState<'photos' | 'videos' | 'details'>('photos');
-  const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
 
-  
+  const [activeTab, setActiveTab] = useState<'photos' | 'videos' | 'details'>(
+    localStorage.getItem('activeTab') as 'photos' | 'videos' | 'details' || 'photos'
+  );
+  const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Restore scroll position on component mount
+  useEffect(() => {
+    const savedScrollPosition = localStorage.getItem('scrollPosition');
+    if (savedScrollPosition) {
+      window.scrollTo(0, parseInt(savedScrollPosition, 10));
+    }
+
+    return () => {
+      // Save scroll position when the user leaves or refreshes the page
+      localStorage.setItem('scrollPosition', window.scrollY.toString());
+    };
+  }, []);
+
+  // Save the active tab to localStorage
+  useEffect(() => {
+    localStorage.setItem('activeTab', activeTab);
+  }, [activeTab]);
+
+
 
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
-        <div className="relative h-[60vh] rounded-xl overflow-hidden mb-8">
+        <div
+          className="relative h-[60vh] rounded-xl overflow-hidden mb-8 cursor-pointer"
+          onClick={() => setIsModalOpen(true)}
+        >
           <img
             src={property.image}
             alt={property.location}
             className="w-full h-full object-cover"
           />
-          
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
             <div className="text-center text-white">
               <h1 className="text-4xl font-bold mb-4">{property.location}</h1>
-              <p className="text-xl"><ul><li>2 SEPARATE ROOMS</li>
-              <li>BED AND ALMIRAH EQUIPPED</li>
-              <li>GEYSER + ATTACHED BATHROOM</li>
-              <li>24 HR WATER AND ELECTRICITY SUPPLY</li>
-              <li>VICINITY OF COLLEGE AND MAIN MARKET AREA</li></ul></p>
+              <p className="text-xl">
+                <ul>
+                  <li>2 Separate Rooms</li>
+                  <li>Bed and Almirah Equipped</li>
+                  <li>Geyser + Attached Bathroom</li>
+                  <li>24 hr Water and Electricity Supply</li>
+                  <li>Vicinity of College and Main Market Area</li>
+                </ul>
+              </p>
               <p className="text-3xl font-bold mt-4">{property.price}</p>
             </div>
           </div>
         </div>
+
+        {/* Hero Modal */}
+        {isModalOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+            onClick={() => setIsModalOpen(false)}
+          >
+            <button
+              className="absolute top-4 right-4 bg-red-500 text-white rounded-full p-2"
+              onClick={() => setIsModalOpen(false)}
+            >
+              ✖
+            </button>
+            <img
+              src={property.image}
+              alt="Hero View"
+              className="max-w-full max-h-[90vh] object-contain"
+            />
+          </div>
+        )}
 
         {/* Navigation Tabs */}
         <div className="flex space-x-4 mb-8">
           <button
             onClick={() => setActiveTab('photos')}
             className={`px-4 py-2 rounded-lg ${
-              activeTab === 'photos'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700'
+              activeTab === 'photos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
             }`}
           >
             Photos
@@ -362,9 +407,7 @@ const PropertyDetail = () => {
           <button
             onClick={() => setActiveTab('videos')}
             className={`px-4 py-2 rounded-lg ${
-              activeTab === 'videos'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700'
+              activeTab === 'videos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
             }`}
           >
             Videos
@@ -372,9 +415,7 @@ const PropertyDetail = () => {
           <button
             onClick={() => setActiveTab('details')}
             className={`px-4 py-2 rounded-lg ${
-              activeTab === 'details'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700'
+              activeTab === 'details' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
             }`}
           >
             Details
@@ -395,9 +436,7 @@ const PropertyDetail = () => {
                   alt={photo.caption}
                   className="w-full h-64 object-cover rounded-lg"
                 />
-                <p className="mt-2 text-center text-gray-600">
-                  {photo.caption}
-                </p>
+                <p className="mt-2 text-center text-gray-600">{photo.caption}</p>
               </div>
             ))}
           </div>
@@ -412,9 +451,7 @@ const PropertyDetail = () => {
                   className="w-full h-64 object-cover rounded-lg"
                   controls
                 />
-                <p className="mt-2 text-center text-gray-600">
-                  {video.title}
-                </p>
+                <p className="mt-2 text-center text-gray-600">{video.title}</p>
               </div>
             ))}
           </div>
@@ -423,79 +460,9 @@ const PropertyDetail = () => {
         {activeTab === 'details' && (
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-2xl font-bold mb-4">Property Details</h2>
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-semibold mb-2">Location</h3>
-                <p><span className="font-bold">{property.location}</span></p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Price</h3>
-                <p><span className="font-bold">{property.price}</span>)+ Water/Electricity Bill (approx <span className="font-bold">1000/month</span>)
-                <br /></p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Amenities</h3>
-                <ul className="list-disc pl-5">
-                  {property.amenities.map((amenity, index) => (
-                    <li key={index}>{amenity}</li>
-                  ))}
-                </ul>
-              </div>
-              
-              
-              
-              <section id="details" className="py-16 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold">Further Details About the Flat</h2>
-                    <p className="mt-4 text-gray-600">Learn more about the property and amenities</p>
-                  </div>
-                  <div className="max-w-3xl mx-auto">
-                    <div className="space-y-6">
-                      <p className="text-lg text-gray-600">
-                        This flat is located in a <span className="font-bold">prime area</span> within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, convenient access to transportation, and shopping centers. The flat comes with all necessary amenities, ensuring a comfortable living experience. Additionally, the surrounding neighborhood is quiet and safe, making it an ideal choice for <span className="font-bold">STUDENTS</span>.
-                      </p>
-                      <p className="text-lg text-gray-600">
-                        The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, and a comfortable living space. The attached bathroom is equipped with a geyser for hot water and well-maintained fittings. For those who enjoy natural light, the large windows in the living areas provide a warm and inviting atmosphere throughout the day.
-                      </p>
-                      <p className="text-lg text-gray-600">
-                        <span className="font-bold">PRICING:</span> Rent: <span className="font-bold">13,800/month</span> + Water/Electricity Bill (approx <span className="font-bold">1000/month</span>)
-                        <br />
-                        <span className="font-bold">SECURITY DEPOSIT:</span> <span className="font-bold">35,000</span>
-                        <br />
-                        One month rent will be deducted for <span className="font-bold">Paint Charges</span>. You will be provided with <span className="font-bold">Rental Agreement Authorized Signature</span>
-                        <br />
-                        <span className="font-bold">ALLOWED:</span> For 2 Students belonging to <span className="font-bold">1st/2nd Year(Male Only)</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              {/* Map Section */}
-                <section id="map" className="py-16 bg-white">
-                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold mb-6">Find Me Here<br /> CLICK ON IT</h2>
-                    <a
-                      href="https://www.google.com/maps?q=12.9113080,77.5665138"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      <img
-                        src="../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
-                        alt="Map Location"
-                        className="w-full h-auto cursor-pointer"
-                      />
-                    </a>
-                  </div>
-                </section>
-            </div>
+            <p className="text-lg text-gray-600">{property.description}</p>
+            {/* Additional details */}
           </div>
-
-
-          
-          
-          
         )}
 
         {/* Media Lightbox */}
@@ -508,51 +475,17 @@ const PropertyDetail = () => {
               className="absolute top-4 right-4 text-white"
               onClick={() => setSelectedMedia(null)}
             >
-              <X className="h-6 w-6" />
+              ✖
             </button>
             <img
               src={selectedMedia}
-              alt="Selected"
+              alt="Selected Media"
               className="max-w-full max-h-[90vh] object-contain"
             />
           </div>
         )}
       </main>
-      <Footer />
     </div>
-  );
-};
-
-const Footer = () => {
-  return (
-    <footer className="bg-gray-900 text-white py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between">
-          <div>
-            <h3 className="text-xl font-bold">Contact</h3>
-            <p>Phone: +91 81708 33961</p>
-            <p>Email: aakashpatra253@gmail.com</p>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                <Instagram className="text-white h-6 w-6" />
-              </a>
-              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="text-white h-6 w-6" />
-              </a>
-              <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
-                <X className="text-white h-6 w-6" />
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="mt-8 text-center text-gray-400">
-          &copy; 2025 DWella. All Rights Reserved.
-        </div>
-      </div>
-    </footer>
   );
 };
 
