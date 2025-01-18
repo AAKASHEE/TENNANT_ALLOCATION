@@ -254,6 +254,7 @@ const HomePage = () => {
           ))}
         </div>
       </main>
+      <Footer/>
     </div>
   );
 };
@@ -543,7 +544,7 @@ const PropertyDetail = () => {
             className="block"
           >
             <img
-              src="../../prop_1/img/IMG_D835C67C3AEF-1.jpeg"
+              src="../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
               alt="Map Location"
               className="w-full h-auto cursor-pointer"
             />
@@ -575,9 +576,43 @@ const PropertyDetail = () => {
           </div>
         )}
       </main>
+      <Footer/>
     </div>
   );
 };
+const Footer = () => {
+  return (
+    <footer className="bg-gray-900 text-white py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between">
+          <div>
+            <h3 className="text-xl font-bold">Contact</h3>
+            <p>Phone: +91 81708 33961</p>
+            <p>Email: aakashpatra253@gmail.com</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold">Follow Us</h3>
+            <div className="flex space-x-4">
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                <Instagram className="text-white h-6 w-6" />
+              </a>
+              <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="text-white h-6 w-6" />
+              </a>
+              <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
+                <X className="text-white h-6 w-6" />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="mt-8 text-center text-gray-400">
+          &copy; 2025 Property Listings. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+  );
+};
+
 
 
 const App = () => {
