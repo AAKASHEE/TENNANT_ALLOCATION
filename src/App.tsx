@@ -457,13 +457,103 @@ const PropertyDetail = () => {
           </div>
         )}
 
-        {activeTab === 'details' && (
-          <div className="bg-white rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Property Details</h2>
-            <p className="text-lg text-gray-600">{property.description}</p>
-            {/* Additional details */}
+{activeTab === 'details' && (
+  <div className="bg-white rounded-lg p-8">
+    <h2 className="text-2xl font-bold mb-4">Property Details</h2>
+    <div className="space-y-4">
+      <div>
+        <h3 className="font-semibold mb-2">Location</h3>
+        <p>
+          <span className="font-bold">{property.location}</span>
+        </p>
+      </div>
+      <div>
+        <h3 className="font-semibold mb-2">Price</h3>
+        <p>
+          <span className="font-bold">{property.price}</span>) + Water/Electricity Bill (approx 
+          <span className="font-bold"> 1000/month</span>)
+          <br />
+        </p>
+      </div>
+      <div>
+        <h3 className="font-semibold mb-2">Amenities</h3>
+        <ul className="list-disc pl-5">
+          {property.amenities.map((amenity, index) => (
+            <li key={index}>{amenity}</li>
+          ))}
+        </ul>
+      </div>
+
+      <section id="details" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">Further Details About the Flat</h2>
+            <p className="mt-4 text-gray-600">
+              Learn more about the property and amenities
+            </p>
           </div>
-        )}
+          <div className="max-w-3xl mx-auto">
+            <div className="space-y-6">
+              <p className="text-lg text-gray-600">
+                This flat is located in a <span className="font-bold">prime area</span> 
+                within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
+                convenient access to transportation, and shopping centers. The flat comes with all 
+                necessary amenities, ensuring a comfortable living experience. Additionally, the 
+                surrounding neighborhood is quiet and safe, making it an ideal choice for 
+                <span className="font-bold"> STUDENTS</span>.
+              </p>
+              <p className="text-lg text-gray-600">
+                The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
+                and a comfortable living space. The attached bathroom is equipped with a geyser 
+                for hot water and well-maintained fittings. For those who enjoy natural light, 
+                the large windows in the living areas provide a warm and inviting atmosphere 
+                throughout the day.
+              </p>
+              <p className="text-lg text-gray-600">
+                <span className="font-bold">PRICING:</span> Rent: 
+                <span className="font-bold"> 13,800/month</span> + Water/Electricity Bill 
+                (approx <span className="font-bold"> 1000/month</span>)
+                <br />
+                <span className="font-bold">SECURITY DEPOSIT:</span> 
+                <span className="font-bold"> 35,000</span>
+                <br />
+                One month rent will be deducted for 
+                <span className="font-bold"> Paint Charges</span>. You will be provided with 
+                <span className="font-bold"> Rental Agreement Authorized Signature</span>
+                <br />
+                <span className="font-bold">ALLOWED:</span> For 2 Students belonging to 
+                <span className="font-bold"> 1st/2nd Year(Male Only)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section id="map" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-6">
+            Find Me Here
+            <br /> CLICK ON IT
+          </h2>
+          <a
+            href="https://www.google.com/maps?q=12.9113080,77.5665138"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <img
+              src="../../img/IMG_D835C67C3AEF-1.jpeg"
+              alt="Map Location"
+              className="w-full h-auto cursor-pointer"
+            />
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+)}
+
 
         {/* Media Lightbox */}
         {selectedMedia && (
