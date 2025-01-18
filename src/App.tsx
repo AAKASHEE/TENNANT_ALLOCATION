@@ -44,7 +44,7 @@ const propertyData: Property[] = [
     id: ":1",
     location: "113, Ground Floor, 5th Cross, Teacher's Colony,Kumarswamy Layout",
     description: "Kumarswamy Layout, Near Dayananda Sagar College",
-    image: "../../img/IMG_0151.jpg",
+    image: "../../img/prop_1/IMG_0151.jpg",
     price: "₹13,800/month",
     amenities: [
       "2 BHK",
