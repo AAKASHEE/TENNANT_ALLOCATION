@@ -123,7 +123,7 @@ const propertyData: Property[] = [
       { url: '../../vid/prop:2/IMG_0233.mp4', title: 'Room 02 Balcony View' },
       { url: '../../vid/prop:2/IMG_0234.mp4', title: 'Balcony View' },
       { url: '../../vid/prop:2/IMG_0241.mp4', title: 'Room 02 Bathroom' },
-      { url: '../../vid/prop:2/IMG_0244.mp4', title: 'Neighborhood Tour' },
+      { url: '../../vid/prop:2/IMG_0244.mp4', title: 'Room 02 Overview' },
     ]
   }
 ];
