@@ -83,7 +83,7 @@ const propertyData: Property[] = [
     price: "₹25,000/month",
     amenities: [
       "2 BHK",
-      "Fully Furnished",
+      "Semi Furnished",
       "24/7 Power Backup",
       "Modular Kitchen",
       "Metro Distance: 500m",
