@@ -41,7 +41,7 @@ interface ContactDialogProps {
 // Property Data
 const propertyData: Property[] = [
   {
-    id: ":1",
+    id: "1",
     location: "113, Ground Floor, 5th Cross, Teacher's Colony,Kumarswamy Layout",
     description: "Kumarswamy Layout, Near Dayananda Sagar College",
     image: "../../img/prop_1/IMG_0151.jpg",
@@ -77,10 +77,10 @@ const propertyData: Property[] = [
     ]
   },
   {
-    id: ":2",
-    location: "",
+    id: "2",
+    location: "113, Ground Floor, 4th Cross, Teacher's Colony,Kumarswamy Layout",
     description: "Kumarswamy Layout, Near Dayananda Sagar College",
-    image: "/img/properties/property2/main.jpg",
+    image: "../../img/prop_2/IMG_0222.jpg",
     price: "₹25,000/month",
     amenities: [
       "2 BHK",
@@ -94,18 +94,37 @@ const propertyData: Property[] = [
       "Each Bedrooms has Its Own attached Bathrooms"
     ],
     photos: [
-      { url: '/img/properties/property2/living.jpg', caption: 'Living Room' },
-      { url: '/img/properties/property2/master.jpg', caption: 'Master Bedroom' },
-      { url: '/img/properties/property2/kitchen.jpg', caption: 'Modern Kitchen' },
-      { url: '/img/properties/property2/bathroom.jpg', caption: 'Premium Bathroom' },
-      { url: '/img/properties/property2/balcony.jpg', caption: 'Balcony' },
-      { url: '/img/properties/property2/gym.jpg', caption: 'Building Gym' }
+      { url: '../../img/prop_2/IMG_0220.jpg', caption: 'Road towards Property' },
+      { url: '../../img/prop_2/IMG_0221.jpg', caption: 'Road towards Main Road' },
+      { url: '../../img/prop_2/IMG_0222.jpg', caption: 'Front face' },
+      { url: '../../img/prop_2/IMG_0223.jpg', caption: 'Stairs ' },
+      { url: '../../img/prop_2/IMG_0224.jpg', caption: 'Hall' },
+      { url: '../../img/prop_2/IMG_0225.jpg', caption: 'Bedroom 01' },
+      { url: '../../img/prop_2/IMG_0226.jpg', caption: 'Bedroom 01' },
+      { url: '../../img/prop_2/IMG_0227.jpg', caption: 'Wardrobe Bedroom 01' },
+      { url: '../../img/prop_2/IMG_0228.jpg', caption: 'Wardrobe Bedroom 01' },
+      { url: '../../img/prop_2/IMG_0229.jpg', caption: 'Full View Bedroom 01' },
+      { url: '../../img/prop_2/IMG_0230.jpg', caption: 'Bathroom 01' },
+      { url: '../../img/prop_2/IMG_0231.jpg', caption: 'Building Gym' },
+      { url: '../../img/prop_2/IMG_0232.jpg', caption: 'Bedroom 02' },
+      { url: '../../img/prop_2/IMG_0235.jpg', caption: 'Bedroom 02 Balcony' },
+      { url: '../../img/prop_2/IMG_0236.jpg', caption: 'Bedroom 02 Wardrobe' },
+      { url: '../../img/prop_2/IMG_0237.jpg', caption: 'Bathroom 02' },
+      { url: '../../img/prop_2/IMG_0238.jpg', caption: 'Dedicated Kitchen' },
+      { url: '../../img/prop_2/IMG_0239.jpg', caption: 'Dedicated Kitchen Full View' },
+      { url: '../../img/prop_2/IMG_0240.jpg', caption: 'Pooja Room/Store Room' },
     ],
     videos: [
-      { url: '../../vid/prop:2/IMG_0203.mp4', title: 'Full Property Tour' },
-      { url: '../../vid/prop:2/IMG_0204.mp4', title: 'Building Amenities' },
-      { url: '../../vid/prop:2/IMG_0205.mp4', title: 'Neighborhood Tour' },
-      { url: '../../vid/prop:2/IMG_0207.mp4', title: 'Neighborhood Tour' }
+      { url: '../../vid/prop:2/IMG_0203.mp4', title: 'Hall' },
+      { url: '../../vid/prop:2/IMG_0204.mp4', title: 'Room 01' },
+      { url: '../../vid/prop:2/IMG_0242.mp4', title: 'Room 01 Overview' },
+      { url: '../../vid/prop:2/IMG_0205.mp4', title: 'Dedicated Kitchen' },
+      { url: '../../vid/prop:2/IMG_0206.mp4', title: 'Common Wash Basin' },
+      { url: '../../vid/prop:2/IMG_0207.mp4', title: 'Room 02' },
+      { url: '../../vid/prop:2/IMG_0233.mp4', title: 'Room 02 Balcony View' },
+      { url: '../../vid/prop:2/IMG_0234.mp4', title: 'Balcony View' },
+      { url: '../../vid/prop:2/IMG_0241.mp4', title: 'Room 02 Bathroom' },
+      { url: '../../vid/prop:2/IMG_0244.mp4', title: 'Neighborhood Tour' },
     ]
   }
 ];
@@ -305,46 +324,98 @@ function AniNavbar() {
 
 const PropertyDetail = () => {
   const { id } = useParams(); // Get the property ID from the URL param
-  const property = propertyData.find((p) => p.id === id); // Find the property by ID
+  const property = propertyData.find((p) => `${p.id}` === id); // Convert p.id to string
 
   if (!property) {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800">Property not found!</h2>
-          <p className="text-gray-600">The property you're looking for doesn't exist. Try visiting the homepage.</p>
-          <a href="/" className="text-blue-600 underline mt-4">Go back to homepage</a>
+          <p className="text-gray-600">The property you're looking for doesn't exist.</p>
         </div>
       </div>
     );
   }
 
 
-  const [activeTab, setActiveTab] = useState<'photos' | 'videos' | 'details'>(
-    localStorage.getItem('activeTab') as 'photos' | 'videos' | 'details' || 'photos'
-  );
+  const renderCustomDetails = () => {
+    if (property.id === '1') {
+      return (
+        <>
+          <p className="text-lg text-gray-600">
+            This flat is located in a <span className="font-bold">prime area</span> 
+            within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
+            convenient access to transportation, and shopping centers. The flat comes with all 
+            necessary amenities, ensuring a comfortable living experience. Additionally, the 
+            surrounding neighborhood is quiet and safe, making it an ideal choice for 
+            <span className="font-bold"> STUDENTS</span>.
+          </p>
+          <p className="text-lg text-gray-600">
+            The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
+            and a comfortable living space. The attached bathroom is equipped with a geyser 
+            for hot water and well-maintained fittings. For those who enjoy natural light, 
+            the large windows in the living areas provide a warm and inviting atmosphere 
+            throughout the day.
+          </p>
+          <p className="text-lg text-gray-600">
+            <span className="font-bold">PRICING:</span> Rent: 
+            <span className="font-bold"> 13,800/month</span> + Water/Electricity Bill 
+            (approx <span className="font-bold"> 1000/month</span>)
+            <br />
+            <span className="font-bold">SECURITY DEPOSIT:</span> 
+            <span className="font-bold"> 35,000</span>
+            <br />
+            One month rent will be deducted for 
+            <span className="font-bold"> Paint Charges</span>. You will be provided with 
+            <span className="font-bold"> Rental Agreement Authorized Signature</span>
+            <br />
+            <span className="font-bold">ALLOWED:</span> For 2 Students belonging to 
+            <span className="font-bold"> 1st/2nd Year(Male Only)</span>
+          </p>
+        </>
+      );
+    } else if (property.id === '2') {
+      return (
+        <>
+          <p className="text-lg text-gray-600">
+            This premium flat is situated in a <span className="font-bold">high-end area</span> 
+            just 500 meters from the <span className="font-bold">METRO STATION</span>. The location 
+            offers excellent connectivity and easy access to all major facilities. The apartment is 
+            part of a modern complex with premium amenities including a gym.
+          </p>
+          <p className="text-lg text-gray-600">
+            The apartment features two luxurious bedrooms with attached bathrooms, a fully equipped 
+            modular kitchen, and spacious living areas. Each bedroom comes with built-in wardrobes 
+            and premium fittings. The property also includes a dedicated pooja room/store room and 
+            a beautiful balcony offering great views.
+          </p>
+          <p className="text-lg text-gray-600">
+            <span className="font-bold">PRICING:</span> Rent: 
+            <span className="font-bold"> 25,000/month</span> + Maintenance
+            <br />
+            <span className="font-bold">SECURITY DEPOSIT:</span> 
+            <span className="font-bold"> 50,000</span>
+            <br />
+            <span className="font-bold">FEATURES:</span>
+            <br />
+            - Fully Furnished with Premium Fittings
+            <br />
+            - 24/7 Power Backup
+            <br />
+            - Building Gym Access
+            <br />
+            - Dedicated Parking
+            <br />
+            - Professional Maintenance Staff
+          </p>
+        </>
+      );
+    }
+  };
+
+  const [activeTab, setActiveTab] = useState<'photos' | 'videos' | 'details'>('photos');
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Restore scroll position on component mount
-  useEffect(() => {
-    const savedScrollPosition = localStorage.getItem('scrollPosition');
-    if (savedScrollPosition) {
-      window.scrollTo(0, parseInt(savedScrollPosition, 10));
-    }
-
-    return () => {
-      // Save scroll position when the user leaves or refreshes the page
-      localStorage.setItem('scrollPosition', window.scrollY.toString());
-    };
-  }, []);
-
-  // Save the active tab to localStorage
-  useEffect(() => {
-    localStorage.setItem('activeTab', activeTab);
-  }, [activeTab]);
-
-
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -363,15 +434,7 @@ const PropertyDetail = () => {
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
             <div className="text-center text-white">
               <h1 className="text-4xl font-bold mb-4">{property.location}</h1>
-              <p className="text-xl">
-                <ul>
-                  <li>2 Separate Rooms</li>
-                  <li>Bed and Almirah Equipped</li>
-                  <li>Geyser + Attached Bathroom</li>
-                  <li>24 hr Water and Electricity Supply</li>
-                  <li>Vicinity of College and Main Market Area</li>
-                </ul>
-              </p>
+              <p className="text-xl">{property.description}</p>
               <p className="text-3xl font-bold mt-4">{property.price}</p>
             </div>
           </div>
@@ -401,25 +464,22 @@ const PropertyDetail = () => {
         <div className="flex space-x-4 mb-8">
           <button
             onClick={() => setActiveTab('photos')}
-            className={`px-4 py-2 rounded-lg ${
-              activeTab === 'photos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
-            }`}
+            className={`px-4 py-2 rounded-lg ${activeTab === 'photos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+              }`}
           >
             Photos
           </button>
           <button
             onClick={() => setActiveTab('videos')}
-            className={`px-4 py-2 rounded-lg ${
-              activeTab === 'videos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
-            }`}
+            className={`px-4 py-2 rounded-lg ${activeTab === 'videos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+              }`}
           >
             Videos
           </button>
           <button
             onClick={() => setActiveTab('details')}
-            className={`px-4 py-2 rounded-lg ${
-              activeTab === 'details' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
-            }`}
+            className={`px-4 py-2 rounded-lg ${activeTab === 'details' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
+              }`}
           >
             Details
           </button>
@@ -445,124 +505,95 @@ const PropertyDetail = () => {
           </div>
         )}
 
-{activeTab === 'videos' && (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {property.videos.map((video, index) => (
-      <div key={index} className="relative">
-        <video
-          src={video.url}
-          className="w-full h-64 object-cover rounded-lg"
-          autoPlay
-          muted
-          loop
-          playsInline// Ensures autoplay works on mobile devices
-          controls
-        />
-        <p className="mt-2 text-center text-gray-600">{video.title}</p>
-      </div>
-    ))}
-  </div>
-)}
-
-{activeTab === 'details' && (
-  <div className="bg-white rounded-lg p-8">
-    <h2 className="text-2xl font-bold mb-4">Property Details</h2>
-    <div className="space-y-4">
-      <div>
-        <h3 className="font-semibold mb-2">Location</h3>
-        <p>
-          <span className="font-bold">{property.location}</span>
-        </p>
-      </div>
-      <div>
-        <h3 className="font-semibold mb-2">Price</h3>
-        <p>
-          <span className="font-bold">{property.price}</span>) + Water/Electricity Bill (approx 
-          <span className="font-bold"> 1000/month</span>)
-          <br />
-        </p>
-      </div>
-      <div>
-        <h3 className="font-semibold mb-2">Amenities</h3>
-        <ul className="list-disc pl-5">
-          {property.amenities.map((amenity, index) => (
-            <li key={index}>{amenity}</li>
-          ))}
-        </ul>
-      </div>
-
-      <section id="details" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Further Details About the Flat</h2>
-            <p className="mt-4 text-gray-600">
-              Learn more about the property and amenities
-            </p>
+        {activeTab === 'videos' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {property.videos.map((video, index) => (
+              <div key={index} className="relative">
+                <video
+                  src={video.url}
+                  className="w-full h-64 object-cover rounded-lg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                />
+                <p className="mt-2 text-center text-gray-600">{video.title}</p>
+              </div>
+            ))}
           </div>
-          <div className="max-w-3xl mx-auto">
-            <div className="space-y-6">
-              <p className="text-lg text-gray-600">
-                This flat is located in a <span className="font-bold">prime area</span> 
-                within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
-                convenient access to transportation, and shopping centers. The flat comes with all 
-                necessary amenities, ensuring a comfortable living experience. Additionally, the 
-                surrounding neighborhood is quiet and safe, making it an ideal choice for 
-                <span className="font-bold"> STUDENTS</span>.
-              </p>
-              <p className="text-lg text-gray-600">
-                The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
-                and a comfortable living space. The attached bathroom is equipped with a geyser 
-                for hot water and well-maintained fittings. For those who enjoy natural light, 
-                the large windows in the living areas provide a warm and inviting atmosphere 
-                throughout the day.
-              </p>
-              <p className="text-lg text-gray-600">
-                <span className="font-bold">PRICING:</span> Rent: 
-                <span className="font-bold"> 13,800/month</span> + Water/Electricity Bill 
-                (approx <span className="font-bold"> 1000/month</span>)
-                <br />
-                <span className="font-bold">SECURITY DEPOSIT:</span> 
-                <span className="font-bold"> 35,000</span>
-                <br />
-                One month rent will be deducted for 
-                <span className="font-bold"> Paint Charges</span>. You will be provided with 
-                <span className="font-bold"> Rental Agreement Authorized Signature</span>
-                <br />
-                <span className="font-bold">ALLOWED:</span> For 2 Students belonging to 
-                <span className="font-bold"> 1st/2nd Year(Male Only)</span>
-              </p>
+        )}
+
+        {activeTab === 'details' && (
+          <div className="bg-white rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-4">Property Details</h2>
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-semibold mb-2">Location</h3>
+                <p>
+                  <span className="font-bold">{property.location}</span>
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">Price</h3>
+                <p>
+                  <span className="font-bold">{property.price}</span>
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2">Amenities</h3>
+                <ul className="list-disc pl-5">
+                  {property.amenities.map((amenity, index) => (
+                    <li key={index}>{amenity}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <section id="details" className="py-16 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="text-center mb-12">
+                    <h2 className="text-3xl font-bold">Further Details About the Flat</h2>
+                    <p className="mt-4 text-gray-600">
+                      Learn more about the property and amenities
+                    </p>
+                  </div>
+                  <div className="max-w-3xl mx-auto">
+                    <div className="space-y-6">
+                      {renderCustomDetails()}
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Map Section */}
+              <section id="map" className="py-16 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                  <h2 className="text-3xl font-bold mb-6">
+                    Find Me Here
+                    <br /> CLICK ON IT
+                  </h2>
+                  <a
+                    href={property.id === '1'
+                      ? "https://www.google.com/maps?q=12.9113080,77.5665138"
+                      : "https://www.google.com/maps?q=12.9115080,77.5667138"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <img
+                      src={property.id === '1'
+                        ? "../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
+                        : "../../img/prop_2/map.jpeg"}
+                      alt="Map Location"
+                      className="w-full h-auto cursor-pointer"
+                    />
+                  </a>
+                </div>
+              </section>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section id="map" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6">
-            Find Me Here
-            <br /> CLICK ON IT
-          </h2>
-          <a
-            href="https://www.google.com/maps?q=12.9113080,77.5665138"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block"
-          >
-            <img
-              src="../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
-              alt="Map Location"
-              className="w-full h-auto cursor-pointer"
-            />
-          </a>
-        </div>
-      </section>
-    </div>
-  </div>
-)}
-
-
-        {/* Media Lightbox */}
+        )}
+       {/* Media Lightbox */}
         {selectedMedia && (
           <div
             className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
@@ -586,6 +617,8 @@ const PropertyDetail = () => {
     </div>
   );
 };
+
+
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-8">
@@ -618,7 +651,6 @@ const Footer = () => {
     </footer>
   );
 };
-
 
 
 const App = () => {
