@@ -56,29 +56,29 @@ const propertyData: Property[] = [
       "Main market-vicinity"
     ],
     photos: [
-      { url: '../../img/prop_1/IMG_0149.jpg', caption: 'Entrance' },
-      { url: '../../img/prop_1/IMG_0150.jpg', caption: 'Front View' },
-      { url: '../../img/prop_1/IMG_0147.jpg', caption: 'Bedroom 1' },
-      { url: '../../img/prop_1/IMG_0160.jpg', caption: 'Bedroom 2' },
-      { url: '../../img/prop_1/IMG_0152.jpg', caption: 'Street View: Towards Main Road' },
-      { url: '../../img/prop_1/IMG_0153.jpg', caption: 'Street View' },
-      { url: '../../img/prop_1/IMG_0161.jpg', caption: 'Hall' },
-      { url: '../../img/prop_1/IMG_0162.jpg', caption: 'Bathroom' },
-      { url: '../../img/prop_1/IMG_0164.jpg', caption: 'Hallway' },
+      { url: '../img/prop_1/IMG_0149.jpg', caption: 'Entrance' },
+      { url: '../img/prop_1/IMG_0150.jpg', caption: 'Front View' },
+      { url: '../img/prop_1/IMG_0147.jpg', caption: 'Bedroom 1' },
+      { url: '../img/prop_1/IMG_0160.jpg', caption: 'Bedroom 2' },
+      { url: '../img/prop_1/IMG_0152.jpg', caption: 'Street View: Towards Main Road' },
+      { url: '../img/prop_1/IMG_0153.jpg', caption: 'Street View' },
+      { url: '../img/prop_1/IMG_0161.jpg', caption: 'Hall' },
+      { url: '../img/prop_1/IMG_0162.jpg', caption: 'Bathroom' },
+      { url: '../img/prop_1/IMG_0164.jpg', caption: 'Hallway' },
     ],
     videos: [
-      { url: '../../vid/prop:1/IMG_0158.mp4', title: 'BEDROOM 01' },
-      { url: '../../vid/prop:1/IMG_0157.mp4', title: 'BEDROOM 02' },
-      { url: '../../vid/prop:1/IMG_0167.mp4', title: 'HALL' },
-      { url: '../../vid/prop:1/IMG_0168.mp4', title: 'KITCHEN' },
-      { url: '../../vid/prop:1/IMG_0159.mp4', title: 'BATHROOM' },
-      { url: '../../vid/prop:1/IMG_4844.mp4', title: 'OUTSIDE DAY' },
-      { url: '../../vid/prop:1/IMG_0169.mp4', title: 'OUTSIDE NIGHT' },
+      { url: '../vid/prop:1/IMG_0158.mp4', title: 'BEDROOM 01' },
+      { url: '../vid/prop:1/IMG_0157.mp4', title: 'BEDROOM 02' },
+      { url: '../vid/prop:1/IMG_0167.mp4', title: 'HALL' },
+      { url: '../vid/prop:1/IMG_0168.mp4', title: 'KITCHEN' },
+      { url: '../vid/prop:1/IMG_0159.mp4', title: 'BATHROOM' },
+      { url: '../vid/prop:1/IMG_4844.mp4', title: 'OUTSIDE DAY' },
+      { url: '../vid/prop:1/IMG_0169.mp4', title: 'OUTSIDE NIGHT' },
     ]
   },
   {
     id: ":2",
-    location: "113, Ground Floor, 4th Cross, Teacher's Colony,Kumarswamy Layout",
+    location: "113, 1sT Floor, 4th Cross, Teacher's Colony,Kumarswamy Layout",
     description: "Kumarswamy Layout, Near Dayananda Sagar College",
     image: "../../img/prop_2/IMG_0222.jpg",
     price: "₹25,000/month",
@@ -339,7 +339,7 @@ const PropertyDetail = () => {
 
 
   const renderCustomDetails = () => {
-    if (property.id === '1') {
+    if (property.id === ':1') {
       return (
         <>
           <p className="text-lg text-gray-600">
@@ -374,39 +374,37 @@ const PropertyDetail = () => {
           </p>
         </>
       );
-    } else if (property.id === '2') {
+    } else if (property.id === ':2') {
       return (
         <>
           <p className="text-lg text-gray-600">
-            This premium flat is situated in a <span className="font-bold">high-end area</span> 
-            just 500 meters from the <span className="font-bold">METRO STATION</span>. The location 
-            offers excellent connectivity and easy access to all major facilities. The apartment is 
-            part of a modern complex with premium amenities including a gym.
+            This flat is located in a <span className="font-bold">prime area</span> 
+            within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
+            convenient access to transportation, and shopping centers. The flat comes with all 
+            necessary amenities, ensuring a comfortable living experience. Additionally, the 
+            surrounding neighborhood is quiet and safe, making it an ideal choice for 
+            <span className="font-bold"> STUDENTS</span>.
           </p>
           <p className="text-lg text-gray-600">
-            The apartment features two luxurious bedrooms with attached bathrooms, a fully equipped 
-            modular kitchen, and spacious living areas. Each bedroom comes with built-in wardrobes 
-            and premium fittings. The property also includes a dedicated pooja room/store room and 
-            a beautiful balcony offering great views.
+            The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
+            and a comfortable living space. The attached bathroom is equipped with a geyser 
+            for hot water and well-maintained fittings. For those who enjoy natural light, 
+            the large windows in the living areas provide a warm and inviting atmosphere 
+            throughout the day.
           </p>
           <p className="text-lg text-gray-600">
             <span className="font-bold">PRICING:</span> Rent: 
-            <span className="font-bold"> 25,000/month</span> + Maintenance
+            <span className="font-bold"> 25,000/month</span> + Water/Electricity Bill 
+            (approx <span className="font-bold"> 1000/month</span>)
             <br />
             <span className="font-bold">SECURITY DEPOSIT:</span> 
-            <span className="font-bold"> 50,000</span>
+            <span className="font-bold"> 60,000</span>
             <br />
-            <span className="font-bold">FEATURES:</span>
+            One month rent will be deducted for 
+            <span className="font-bold"> Paint Charges</span>. You will be provided with 
+            <span className="font-bold"> Rental Agreement Authorized Signature</span>
             <br />
-            - Fully Furnished with Premium Fittings
-            <br />
-            - 24/7 Power Backup
-            <br />
-            - Building Gym Access
-            <br />
-            - Dedicated Parking
-            <br />
-            - Professional Maintenance Staff
+            <span className="font-bold">ALLOWED:</span> For 2 People 
           </p>
         </>
       );
@@ -573,7 +571,7 @@ const PropertyDetail = () => {
                     <br /> CLICK ON IT
                   </h2>
                   <a
-                    href={property.id === '1'
+                    href={property.id === ':1'
                       ? "https://www.google.com/maps?q=12.9113080,77.5665138"
                       : "https://www.google.com/maps?q=12.9115080,77.5667138"}
                     target="_blank"
@@ -581,9 +579,9 @@ const PropertyDetail = () => {
                     className="block"
                   >
                     <img
-                      src={property.id === '1'
+                      src={property.id === ':1'
                         ? "../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
-                        : "../../img/prop_2/map.jpeg"}
+                        : "../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"}
                       alt="Map Location"
                       className="w-full h-auto cursor-pointer"
                     />
