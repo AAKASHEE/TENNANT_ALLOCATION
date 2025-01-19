@@ -167,7 +167,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
 // Components
 const Navbar = () => {
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white shadow-md h-18">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
