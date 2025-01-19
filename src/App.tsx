@@ -178,7 +178,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center">
             <a
-              href="tel:+918170833961"
+              href="https://wa.me/918170833961?"
               className="px-4 py-2 text-blue-600 hover:text-blue-800"
             >
               Contact Us
