@@ -591,7 +591,7 @@ function AniNavbar() {
                   <a
                     href={property.id === ':1'
                       ? "https://www.google.com/maps?q=12.9113080,77.5665138"
-                      : "https://www.google.com/maps?q=12.9115080,77.5667138"}
+                      : "https://www.google.com/maps?q=12.91166°,77.56592°"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
@@ -599,7 +599,7 @@ function AniNavbar() {
                     <img
                       src={property.id === ':1'
                         ? "../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
-                        : "../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"}
+                        : "../../img/prop_2/IMG_0249.jpg"}
                       alt="Map Location"
                       className="w-full h-auto cursor-pointer"
                     />
