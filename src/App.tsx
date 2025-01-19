@@ -1,7 +1,6 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
+import React, { useState, useEffect, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Routes, useParams} from 'react-router-dom';
 import {
-  Home,
   Instagram,
   Linkedin,
   X,
@@ -128,6 +127,8 @@ const propertyData: Property[] = [
     ]
   }
 ];
+
+
 
 
 function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
@@ -321,99 +322,116 @@ function AniNavbar() {
     </div>
   );
 }
+  const PropertyDetail = () => {
+    const { id } = useParams(); // Get the property ID from the URL param
+    const property = propertyData.find((p) => `${p.id}` === id); // Convert p.id to string
 
-const PropertyDetail = () => {
-  const { id } = useParams(); // Get the property ID from the URL param
-  const property = propertyData.find((p) => `${p.id}` === id); // Convert p.id to string
 
-  if (!property) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800">Property not found!</h2>
-          <p className="text-gray-600">The property you're looking for doesn't exist.</p>
+    if (!property) {
+      return (
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-gray-800">Property not found!</h2>
+            <p className="text-gray-600">The property you're looking for doesn't exist.</p>
+          </div>
         </div>
-      </div>
-    );
-  }
-
-
-  const renderCustomDetails = () => {
-    if (property.id === ':1') {
-      return (
-        <>
-          <p className="text-lg text-gray-600">
-            This flat is located in a <span className="font-bold">prime area</span> 
-            within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
-            convenient access to transportation, and shopping centers. The flat comes with all 
-            necessary amenities, ensuring a comfortable living experience. Additionally, the 
-            surrounding neighborhood is quiet and safe, making it an ideal choice for 
-            <span className="font-bold"> STUDENTS</span>.
-          </p>
-          <p className="text-lg text-gray-600">
-            The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
-            and a comfortable living space. The attached bathroom is equipped with a geyser 
-            for hot water and well-maintained fittings. For those who enjoy natural light, 
-            the large windows in the living areas provide a warm and inviting atmosphere 
-            throughout the day.
-          </p>
-          <p className="text-lg text-gray-600">
-            <span className="font-bold">PRICING:</span> Rent: 
-            <span className="font-bold"> 13,800/month</span> + Water/Electricity Bill 
-            (approx <span className="font-bold"> 1000/month</span>)
-            <br />
-            <span className="font-bold">SECURITY DEPOSIT:</span> 
-            <span className="font-bold"> 35,000</span>
-            <br />
-            One month rent will be deducted for 
-            <span className="font-bold"> Paint Charges</span>. You will be provided with 
-            <span className="font-bold"> Rental Agreement Authorized Signature</span>
-            <br />
-            <span className="font-bold">ALLOWED:</span> For 2 Students belonging to 
-            <span className="font-bold"> 1st/2nd Year(Male Only)</span>
-          </p>
-        </>
-      );
-    } else if (property.id === ':2') {
-      return (
-        <>
-          <p className="text-lg text-gray-600">
-            This flat is located in a <span className="font-bold">prime area</span> 
-            within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
-            convenient access to transportation, and shopping centers. The flat comes with all 
-            necessary amenities, ensuring a comfortable living experience. Additionally, the 
-            surrounding neighborhood is quiet and safe, making it an ideal choice for 
-            <span className="font-bold"> STUDENTS</span>.
-          </p>
-          <p className="text-lg text-gray-600">
-            The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
-            and a comfortable living space. The attached bathroom is equipped with a geyser 
-            for hot water and well-maintained fittings. For those who enjoy natural light, 
-            the large windows in the living areas provide a warm and inviting atmosphere 
-            throughout the day.
-          </p>
-          <p className="text-lg text-gray-600">
-            <span className="font-bold">PRICING:</span> Rent: 
-            <span className="font-bold"> 25,000/month</span> + Water/Electricity Bill 
-            (approx <span className="font-bold"> 1000/month</span>)
-            <br />
-            <span className="font-bold">SECURITY DEPOSIT:</span> 
-            <span className="font-bold"> 60,000</span>
-            <br />
-            One month rent will be deducted for 
-            <span className="font-bold"> Paint Charges</span>. You will be provided with 
-            <span className="font-bold"> Rental Agreement Authorized Signature</span>
-            <br />
-            <span className="font-bold">ALLOWED:</span> For 2 People 
-          </p>
-        </>
       );
     }
-  };
+    
+    const [activeTab, setActiveTab] = useState<'photos' | 'videos' | 'details'>('photos');
+    const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  
+  
+    // Save the active tab to localStorage whenever it changes
+    useEffect(() => {
+      localStorage.setItem(`activeTab-${id}`, activeTab);
+    }, [activeTab, id]);
 
-  const [activeTab, setActiveTab] = useState<'photos' | 'videos' | 'details'>('photos');
-  const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+      // Retrieve the active tab from localStorage when the component mounts
+      useEffect(() => {
+        const savedTab = localStorage.getItem(`activeTab-${id}`);
+        if (savedTab) {
+          setActiveTab(savedTab as 'photos' | 'videos' | 'details');
+        }
+      }, [id]);
+
+
+
+    const renderCustomDetails = () => {
+      if (property.id === ':1') {
+        return (
+          <>
+            <p className="text-lg text-gray-600">
+              This flat is located in a <span className="font-bold">prime area</span> 
+              within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
+              convenient access to transportation, and shopping centers. The flat comes with all 
+              necessary amenities, ensuring a comfortable living experience. Additionally, the 
+              surrounding neighborhood is quiet and safe, making it an ideal choice for 
+              <span className="font-bold"> STUDENTS</span>.
+            </p>
+            <p className="text-lg text-gray-600">
+              The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
+              and a comfortable living space. The attached bathroom is equipped with a geyser 
+              for hot water and well-maintained fittings. For those who enjoy natural light, 
+              the large windows in the living areas provide a warm and inviting atmosphere 
+              throughout the day.
+            </p>
+            <p className="text-lg text-gray-600">
+              <span className="font-bold">PRICING:</span> Rent: 
+              <span className="font-bold"> 13,800/month</span> + Water/Electricity Bill 
+              (approx <span className="font-bold"> 1000/month</span>)
+              <br />
+              <span className="font-bold">SECURITY DEPOSIT:</span> 
+              <span className="font-bold"> 35,000</span>
+              <br />
+              One month rent will be deducted for 
+              <span className="font-bold"> Paint Charges</span>. You will be provided with 
+              <span className="font-bold"> Rental Agreement Authorized Signature</span>
+              <br />
+              <span className="font-bold">ALLOWED:</span> For 2 Students belonging to 
+              <span className="font-bold"> 1st/2nd Year(Male Only)</span>
+            </p>
+          </>
+        );
+      } else if (property.id === ':2') {
+        return (
+          <>
+            <p className="text-lg text-gray-600">
+              This flat is located in a <span className="font-bold">prime area</span> 
+              within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
+              convenient access to transportation, and shopping centers. The flat comes with all 
+              necessary amenities, ensuring a comfortable living experience. Additionally, the 
+              surrounding neighborhood is quiet and safe, making it an ideal choice for 
+              <span className="font-bold"> STUDENTS</span>.
+            </p>
+            <p className="text-lg text-gray-600">
+              The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
+              and a comfortable living space. The attached bathroom is equipped with a geyser 
+              for hot water and well-maintained fittings. For those who enjoy natural light, 
+              the large windows in the living areas provide a warm and inviting atmosphere 
+              throughout the day.
+            </p>
+            <p className="text-lg text-gray-600">
+              <span className="font-bold">PRICING:</span> Rent: 
+              <span className="font-bold"> 25,000/month</span> + Water/Electricity Bill 
+              (approx <span className="font-bold"> 1000/month</span>)
+              <br />
+              <span className="font-bold">SECURITY DEPOSIT:</span> 
+              <span className="font-bold"> 60,000</span>
+              <br />
+              One month rent will be deducted for 
+              <span className="font-bold"> Paint Charges</span>. You will be provided with 
+              <span className="font-bold"> Rental Agreement Authorized Signature</span>
+              <br />
+              <span className="font-bold">ALLOWED:</span> For 2 People 
+            </p>
+          </>
+        );
+      }
+    };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -591,7 +609,8 @@ const PropertyDetail = () => {
             </div>
           </div>
         )}
-       {/* Media Lightbox */}
+       
+        {/* Media Lightbox */}
         {selectedMedia && (
           <div
             className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
@@ -600,18 +619,31 @@ const PropertyDetail = () => {
             <button
               className="absolute top-4 right-4 text-white"
               onClick={() => setSelectedMedia(null)}
+              aria-label="Close Media Lightbox"
             >
               ✖
             </button>
-            <img
-              src={selectedMedia}
-              alt="Selected Media"
-              className="max-w-full max-h-[90vh] object-contain"
-            />
+            {selectedMedia.includes('video') ? (
+              <video
+                src={selectedMedia}
+                className="max-w-full max-h-[90vh] object-contain"
+                controls
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            ) : (
+              <img
+                src={selectedMedia}
+                alt="Selected Media"
+                className="max-w-full max-h-[90vh] object-contain"
+              />
+            )}
           </div>
         )}
       </main>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
