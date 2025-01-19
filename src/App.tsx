@@ -41,7 +41,7 @@ interface ContactDialogProps {
 // Property Data
 const propertyData: Property[] = [
   {
-    id: "1",
+    id: ":1",
     location: "113, Ground Floor, 5th Cross, Teacher's Colony,Kumarswamy Layout",
     description: "Kumarswamy Layout, Near Dayananda Sagar College",
     image: "../../img/prop_1/IMG_0151.jpg",
@@ -77,7 +77,7 @@ const propertyData: Property[] = [
     ]
   },
   {
-    id: "2",
+    id: ":2",
     location: "113, Ground Floor, 4th Cross, Teacher's Colony,Kumarswamy Layout",
     description: "Kumarswamy Layout, Near Dayananda Sagar College",
     image: "../../img/prop_2/IMG_0222.jpg",
