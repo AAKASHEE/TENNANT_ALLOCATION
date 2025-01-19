@@ -1,6 +1,11 @@
-# Property Video Gallery
+# DWella -Property listing Website - AN affordable and convenient solutions for students coming to BANGLORE
 
-A simple web project that showcases various property videos. This project allows users to view videos of different rooms in a property with no sound, autoplay, and looping functionality.
+
+
+As students when come to bangalore without knowing about the background data of pg and certain vulnerable living accomodations fall into the money trap , at the end denied of their security deposti or in worst case "getting kicke dout of their room".
+DWella provides efficient housing options according to diverse needs of students/ professionals.
+
+A simple web project that showcases various property . This project allows users to view videos of different rooms in a property with no sound, autoplay, and looping functionality.
 
 ## Features
 
@@ -9,6 +14,11 @@ A simple web project that showcases various property videos. This project allows
 - **Muted Videos**: No sound will play during video playback.
 - **Responsive Layout**: The video grid adjusts for different screen sizes.
 - **Hover Effect**: A subtle hover effect on the video tiles.
+
+
+
+- **Previow**:Photos can be previewed using efficient DOM handling.
+- **Responsive Layout**: The photo grid adjusts for different screen sizes.
 
 ## Demo
 
