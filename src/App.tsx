@@ -669,7 +669,7 @@ const Footer = () => {
                 <Linkedin className="text-white h-6 w-6" />
               </a>
               <a href="https://x.com/AAKASHEEX" target="_blank" rel="noopener noreferrer">
-                <img src="../../img/x.png" alt="Custom X Icon" className="h-6 w-6 filter invert" />
+                <img src="/img/x.png" alt="Custom X Icon" className="h-6 w-6 filter invert" />
               </a>
             </div>
           </div>
