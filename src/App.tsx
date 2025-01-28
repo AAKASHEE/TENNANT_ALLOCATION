@@ -1,9 +1,8 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, useParams} from 'react-router-dom';
 import {
   Instagram,
   Linkedin,
-  X,
 } from 'lucide-react';
 import '@fontsource/poppins';
 
@@ -287,22 +286,22 @@ function AniNavbar() {
   const [text, setText] = useState('');
   const initialText = "DDW we've got your back";
   const newText = " HHop in to Never Settle Again!";
-  let index = 0;
+  const indexRef = useRef(0);
 
   useEffect(() => {
     const typeAndErase = () => {
-      if (index < initialText.length) {
-        setText((prev) => prev + initialText.charAt(index));
-        index++;
-      } else if (index < initialText.length * 2) {
+      if (indexRef.current < initialText.length) {
+        setText((prev) => prev + initialText.charAt(indexRef.current));
+        indexRef.current++;
+      } else if (indexRef.current < initialText.length * 2) {
         setText((prev) => prev.slice(0, -1));
-        index++;
-      } else if (index < initialText.length * 2 + newText.length) {
-        setText((prev) => prev + newText.charAt(index - initialText.length * 2));
-        index++;
+        indexRef.current++;
+      } else if (indexRef.current < initialText.length * 2 + newText.length) {
+        setText((prev) => prev + newText.charAt(indexRef.current - initialText.length * 2));
+        indexRef.current++;
       } else {
         // Reset index to start over
-        index = 0;
+        indexRef.current = 0;
         setText('');
       }
     };
@@ -323,27 +322,16 @@ function AniNavbar() {
   );
 }
   const PropertyDetail = () => {
-    const { id } = useParams(); // Get the property ID from the URL param
-    const property = propertyData.find((p) => `${p.id}` === id); // Convert p.id to string
-
-
-    if (!property) {
-      return (
-        <div className="flex justify-center items-center min-h-screen">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-800">Property not found!</h2>
-            <p className="text-gray-600">The property you're looking for doesn't exist.</p>
-          </div>
-        </div>
-      );
-    }
-    
     const [activeTab, setActiveTab] = useState<'photos' | 'videos' | 'details'>('photos');
     const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  
-  
+     
+    
+    
+    
+    const { id } = useParams(); // Get the property ID from the URL param
+    const property = propertyData.find((p) => `${p.id}` === id); // Convert p.id to string
+    
     // Save the active tab to localStorage whenever it changes
     useEffect(() => {
       localStorage.setItem(`activeTab-${id}`, activeTab);
@@ -357,6 +345,25 @@ function AniNavbar() {
           setActiveTab(savedTab as 'photos' | 'videos' | 'details');
         }
       }, [id]);
+    
+
+
+    if (!property) {
+      return (
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-gray-800">Property not found!</h2>
+            <p className="text-gray-600">The property you're looking for doesn't exist.</p>
+          </div>
+        </div>
+      );
+    }
+    
+    
+  
+  
+  
+   
 
 
 
