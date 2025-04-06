@@ -663,7 +663,7 @@ const Footer = () => {
         <div className="flex justify-between">
           <div>
             <h3 className="text-xl font-bold">Contact</h3>
-            <p>Phone: +91 81708 33961</p>
+            <p>Phone: +91 8861653961</p>
             <p>Email: aakashpatra253@gmail.com</p>
           </div>
           <div>
