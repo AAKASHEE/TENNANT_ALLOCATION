@@ -164,7 +164,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
         <p className="text-gray-700 mb-4">
           <strong>Social Media:</strong>{" "}
           <a
-            href="https://wa.me/918170833961?text=Hi%20Akash,%20I%20am%20interested%20in%20your%20rental%20property."
+            href="https://wa.me/918861653961?text=Hi%20Aakash,%20I%20am%20interested%20in%20your%20rental%20property."
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 underline"
@@ -197,7 +197,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center">
             <a
-              href="https://wa.me/918170833961?"
+              href="https://wa.me/918861653961?"
               className="px-4 py-2 text-blue-600 hover:text-blue-800"
             >
               Contact Us
