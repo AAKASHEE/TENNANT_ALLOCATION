@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, useRef } from 'react';
-import { BrowserRouter as Router, Route, Routes, useParams} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useParams, Link } from 'react-router-dom';
 import {
   Instagram,
   Linkedin,
@@ -260,6 +260,70 @@ const PropertyCard = React.memo(({ property }: { property: Property }) => {
     </div>
   );
 });
+
+// New Landing Page Component
+const LandingPage = () => {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white flex flex-col">
+      <div className="flex-grow flex flex-col items-center justify-center p-4">
+        <div style={{ backgroundColor: "white", padding: "20px", borderRadius: "50%", marginBottom: "2rem" }}>
+          <img src="/img/logo.jpeg" alt="DWella Logo" width="150" height="150" className="rounded-full" />
+        </div>
+        
+        <h1 className="text-5xl font-bold text-blue-800 mb-8 text-center">Welcome to DWella</h1>
+        <p className="text-xl text-gray-700 mb-10 text-center max-w-lg">
+          Your one-stop solution for finding the perfect accommodation and roommates near Dayananda Sagar College
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+          <Link 
+            to="/housing" 
+            className="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-8 px-6 rounded-xl shadow-lg transition-all transform hover:scale-105 flex flex-col items-center justify-center"
+          >
+            <span className="text-3xl mb-2">🏠</span>
+            <span>HOUSINGS</span>
+            <p className="text-sm mt-2 text-blue-100">Find your perfect accommodation</p>
+          </Link>
+          
+          <Link 
+            to="/teammates" 
+            className="bg-green-600 hover:bg-green-700 text-white text-xl font-bold py-8 px-6 rounded-xl shadow-lg transition-all transform hover:scale-105 flex flex-col items-center justify-center"
+          >
+            <span className="text-3xl mb-2">👥</span>
+            <span>TEAMMATES</span>
+            <p className="text-sm mt-2 text-green-100">Connect with potential roommates</p>
+          </Link>
+        </div>
+      </div>
+      
+      <AniNavbar />
+      <Footer />
+    </div>
+  );
+};
+
+// Teammates Page (Blank for now)
+const TeammatesPage = () => {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 className="text-4xl font-bold text-center mb-12">
+          Teammates Section
+        </h1>
+        <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+          <p className="text-xl text-gray-700">
+            This section is under development. Check back soon for roommate matching features!
+          </p>
+          <Link to="/" className="inline-block mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+            Return to Home
+          </Link>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 const HomePage = () => {
   return (
@@ -588,129 +652,128 @@ function AniNavbar() {
                 </div>
               </section>
 
-              {/* Map Section */}
-              <section id="map" className="py-16 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                  <h2 className="text-3xl font-bold mb-6">
-                    Find Me Here
-                    <br /> CLICK ON IT
-                  </h2>
-                  <a
-                    href={property.id === ':1'
-                      ? "https://www.google.com/maps?q=12.9113080,77.5665138"
-                      : "https://www.google.com/maps?q=12.91166°,77.56592°"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    <img
-                      src={property.id === ':1'
-                        ? "../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
-                        : "../../img/prop_2/IMG_0249.jpg"}
-                      alt="Map Location"
-                      className="w-full h-auto cursor-pointer"
-                    />
-                  </a>
-                </div>
-              </section>
-            </div>
-          </div>
-        )}
-       
-        {/* Media Lightbox */}
+             {/* Map Section */}
+                           <section id="map" className="py-16 bg-white">
+                             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                               <h2 className="text-3xl font-bold mb-6">
+                                 Find Me Here
+                                 <br /> CLICK ON IT
+                               </h2>
+                               <a
+                                 href={property.id === ':1'
+                                   ? "https://www.google.com/maps?q=12.9113080,77.5665138"
+                                   : "https://www.google.com/maps?q=12.91166°,77.56592°"}
+                                 target="_blank"
+                                 rel="noopener noreferrer"
+                                 className="block"
+                               >
+                                 <img
+                                   src={property.id === ':1'
+                                     ? "../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
+                                     : "../../img/prop_2/IMG_0249.jpg"}
+                                   alt="Map Location"
+                                   className="w-full h-auto cursor-pointer"
+                                 />
+                               </a>
+                             </div>
+                           </section>
+                         </div>
+                       </div>
+                     )}
+                    
+                            {/* Media Modal */}
         {selectedMedia && (
           <div
             className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
             onClick={() => setSelectedMedia(null)}
           >
             <button
-              className="absolute top-4 right-4 text-white"
+              className="absolute top-4 right-4 bg-red-500 text-white rounded-full p-2"
               onClick={() => setSelectedMedia(null)}
-              aria-label="Close Media Lightbox"
             >
               ✖
             </button>
-            {selectedMedia.includes('video') ? (
-              <video
-                src={selectedMedia}
-                className="max-w-full max-h-[90vh] object-contain"
-                controls
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
-            ) : (
-              <img
-                src={selectedMedia}
-                alt="Selected Media"
-                className="max-w-full max-h-[90vh] object-contain"
-              />
-            )}
+            <img
+              src={selectedMedia}
+              alt="Selected Media"
+              className="max-w-full max-h-[90vh] object-contain"
+            />
           </div>
         )}
+
+        {/* Contact Section */}
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+          >
+            Contact Tenant
+          </button>
+          <ContactDialog
+            isOpen={isDialogOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+        </div>
       </main>
       <Footer />
     </div>
   );
 };
 
-
+// Footer Component
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-8">
+    <footer className="bg-gray-800 text-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between">
-          <div>
-            <h3 className="text-xl font-bold">Contact</h3>
-            <p>Phone: +91 8861653961</p>
-            <p>Email: aakashpatra253@gmail.com</p>
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="mb-6 md:mb-0">
+            <h2 className="text-2xl font-bold">DWella</h2>
+            <p className="text-gray-300">Your Housing and Roommate Solution</p>
           </div>
-          <div>
-            <h3 className="text-xl font-bold">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a href="https://www.instagram.com/aakaas.he" target="_blank" rel="noopener noreferrer">
-                <Instagram className="text-white h-6 w-6" />
-              </a>
-              <a href="https://www.linkedin.com/in/aakashee/" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="text-white h-6 w-6" />
-              </a>
-              <a href="https://x.com/AAKASHEEX" target="_blank" rel="noopener noreferrer">
-                <img src=".././x.png" alt="Custom X Icon" className="h-6 w-6 filter invert" />
-              </a>
-            </div>
+          
+          <div className="flex space-x-6">
+            <a 
+              href="https://www.instagram.com/aakaas.he/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white"
+            >
+              <Instagram size={24} />
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/aakash-patra-6ba866225" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white"
+            >
+              <Linkedin size={24} />
+            </a>
           </div>
         </div>
-        <div className="mt-8 text-center text-gray-400">
-          &copy; 2025 DWella. All Rights Reserved.
+        
+        <hr className="border-gray-700 my-6" />
+        
+        <div className="text-center text-gray-400 text-sm">
+          <p>&copy; {new Date().getFullYear()} DWella. All rights reserved.</p>
+          <p className="mt-2">Designed by AAKASHE</p>
         </div>
       </div>
     </footer>
   );
 };
 
-
-const App = () => {
+// Main App
+function App() {
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          {/* HomePage Route */}
-          <Route path="/" element={
-            <> <AniNavbar />
-              <HomePage />
-            </>
-          }/>
-          
-          
-          {/* Property Detail Route */}
-          <Route path="property/:id" element={<PropertyDetail />} />
-
-          {/* You can add more routes for other pages like "About", "Contact", etc. */}
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/housing" element={<HomePage />} />
+        <Route path="/teammates" element={<TeammatesPage />} />
+        <Route path="/property/:id" element={<PropertyDetail />} />
+      </Routes>
     </Router>
   );
-};
+}
 
 export default App;
