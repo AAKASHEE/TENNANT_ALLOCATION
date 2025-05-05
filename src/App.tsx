@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, useParams, Link } from 'react-router-dom';
 import {
   Instagram,
@@ -303,28 +303,7 @@ const LandingPage = () => {
   );
 };
 
-// Teammates Page (Blank for now)
-const TeammatesPage = () => {
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <Navbar />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-bold text-center mb-12">
-          Teammates Section
-        </h1>
-        <div className="bg-white p-8 rounded-lg shadow-lg text-center">
-          <p className="text-xl text-gray-700">
-            This section is under development. Check back soon for roommate matching features!
-          </p>
-          <Link to="/" className="inline-block mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
-            Return to Home
-          </Link>
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
-};
+import TeammatesPage from './pages/T'; // Teammates matgching Criteria
 
 const HomePage = () => {
   return (
