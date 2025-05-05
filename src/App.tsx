@@ -303,7 +303,7 @@ const LandingPage = () => {
   );
 };
 
-import TeammatesPage from './pages/T'; // Teammates matgching Criteria
+import TeammatesPage from './pages/TeammatesPage'; // Teammates matgching Criteria
 
 const HomePage = () => {
   return (
