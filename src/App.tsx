@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useParams, Link } from 'react-r
 import {
   Instagram,
   Linkedin,
+  Twitter,
 } from 'lucide-react';
 import '@fontsource/poppins';
 
@@ -139,7 +140,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
         <h2 className="text-2xl font-semibold mb-4">Contact Tenant</h2>
         <p className="text-2xl  mb-4" >Tap on the coloured line</p>
         <p className="text-gray-700 mb-2">
-          <strong>Name:</strong> Akash Patra
+          <strong>Name:</strong> AAKASHE
         </p>
         <p className="text-gray-700 mb-2">
           <strong>Year:</strong> 2nd YEAR,EE
@@ -385,124 +386,111 @@ function AniNavbar() {
     </div>
   );
 }
-  const PropertyDetail = () => {
-    const [activeTab, setActiveTab] = useState<'photos' | 'videos' | 'details'>('photos');
-    const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-     
-    
-    
-    
-    const { id } = useParams(); // Get the property ID from the URL param
-    const property = propertyData.find((p) => `${p.id}` === id); // Convert p.id to string
-    
-    // Save the active tab to localStorage whenever it changes
-    useEffect(() => {
-      localStorage.setItem(`activeTab-${id}`, activeTab);
-    }, [activeTab, id]);
+const PropertyDetail = () => {
+  const [activeTab, setActiveTab] = useState<'photos' | 'videos' | 'details'>('photos');
+  const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false); // Add missing state for contact dialog
+  
+  const { id } = useParams(); // Get the property ID from the URL param
+  const property = propertyData.find((p) => `${p.id}` === id); // Convert p.id to string
+  
+  // Save the active tab to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem(`activeTab-${id}`, activeTab);
+  }, [activeTab, id]);
 
+  // Retrieve the active tab from localStorage when the component mounts
+  useEffect(() => {
+    const savedTab = localStorage.getItem(`activeTab-${id}`);
+    if (savedTab) {
+      setActiveTab(savedTab as 'photos' | 'videos' | 'details');
+    }
+  }, [id]);
 
-      // Retrieve the active tab from localStorage when the component mounts
-      useEffect(() => {
-        const savedTab = localStorage.getItem(`activeTab-${id}`);
-        if (savedTab) {
-          setActiveTab(savedTab as 'photos' | 'videos' | 'details');
-        }
-      }, [id]);
-    
-
-
-    if (!property) {
-      return (
-        <div className="flex justify-center items-center min-h-screen">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-800">Property not found!</h2>
-            <p className="text-gray-600">The property you're looking for doesn't exist.</p>
-          </div>
+  if (!property) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-800">Property not found!</h2>
+          <p className="text-gray-600">The property you're looking for doesn't exist.</p>
         </div>
+      </div>
+    );
+  }
+
+  const renderCustomDetails = () => {
+    if (property.id === ':1') {
+      return (
+        <>
+          <p className="text-lg text-gray-600">
+            This flat is located in a <span className="font-bold">prime area</span> 
+            within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
+            convenient access to transportation, and shopping centers. The flat comes with all 
+            necessary amenities, ensuring a comfortable living experience. Additionally, the 
+            surrounding neighborhood is quiet and safe, making it an ideal choice for 
+            <span className="font-bold"> STUDENTS</span>.
+          </p>
+          <p className="text-lg text-gray-600">
+            The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
+            and a comfortable living space. The attached bathroom is equipped with a geyser 
+            for hot water and well-maintained fittings. For those who enjoy natural light, 
+            the large windows in the living areas provide a warm and inviting atmosphere 
+            throughout the day.
+          </p>
+          <p className="text-lg text-gray-600">
+            <span className="font-bold">PRICING:</span> Rent: 
+            <span className="font-bold"> 13,800/month</span> + Water/Electricity Bill 
+            (approx <span className="font-bold"> 1000/month</span>)
+            <br />
+            <span className="font-bold">SECURITY DEPOSIT:</span> 
+            <span className="font-bold"> 35,000</span>
+            <br />
+            One month rent will be deducted for 
+            <span className="font-bold"> Paint Charges</span>. You will be provided with 
+            <span className="font-bold"> Rental Agreement Authorized Signature</span>
+            <br />
+            <span className="font-bold">ALLOWED:</span> For 2 Students belonging to 
+            <span className="font-bold"> 1st/2nd Year(Male Only)</span>
+          </p>
+        </>
+      );
+    } else if (property.id === ':2') {
+      return (
+        <>
+          <p className="text-lg text-gray-600">
+            This flat is located in a <span className="font-bold">prime area</span> 
+            within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
+            convenient access to transportation, and shopping centers. The flat comes with all 
+            necessary amenities, ensuring a comfortable living experience. Additionally, the 
+            surrounding neighborhood is quiet and safe, making it an ideal choice for 
+            <span className="font-bold"> STUDENTS</span>.
+          </p>
+          <p className="text-lg text-gray-600">
+            The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
+            and a comfortable living space. The attached bathroom is equipped with a geyser 
+            for hot water and well-maintained fittings. For those who enjoy natural light, 
+            the large windows in the living areas provide a warm and inviting atmosphere 
+            throughout the day.
+          </p>
+          <p className="text-lg text-gray-600">
+            <span className="font-bold">PRICING:</span> Rent: 
+            <span className="font-bold"> 25,000/month</span> + Water/Electricity Bill 
+            (approx <span className="font-bold"> 1000/month</span>)
+            <br />
+            <span className="font-bold">SECURITY DEPOSIT:</span> 
+            <span className="font-bold"> 60,000</span>
+            <br />
+            One month rent will be deducted for 
+            <span className="font-bold"> Paint Charges</span>. You will be provided with 
+            <span className="font-bold"> Rental Agreement Authorized Signature</span>
+            <br />
+            <span className="font-bold">ALLOWED:</span> For 2 People 
+          </p>
+        </>
       );
     }
-    
-    
-  
-  
-  
-   
-
-
-
-    const renderCustomDetails = () => {
-      if (property.id === ':1') {
-        return (
-          <>
-            <p className="text-lg text-gray-600">
-              This flat is located in a <span className="font-bold">prime area</span> 
-              within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
-              convenient access to transportation, and shopping centers. The flat comes with all 
-              necessary amenities, ensuring a comfortable living experience. Additionally, the 
-              surrounding neighborhood is quiet and safe, making it an ideal choice for 
-              <span className="font-bold"> STUDENTS</span>.
-            </p>
-            <p className="text-lg text-gray-600">
-              The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
-              and a comfortable living space. The attached bathroom is equipped with a geyser 
-              for hot water and well-maintained fittings. For those who enjoy natural light, 
-              the large windows in the living areas provide a warm and inviting atmosphere 
-              throughout the day.
-            </p>
-            <p className="text-lg text-gray-600">
-              <span className="font-bold">PRICING:</span> Rent: 
-              <span className="font-bold"> 13,800/month</span> + Water/Electricity Bill 
-              (approx <span className="font-bold"> 1000/month</span>)
-              <br />
-              <span className="font-bold">SECURITY DEPOSIT:</span> 
-              <span className="font-bold"> 35,000</span>
-              <br />
-              One month rent will be deducted for 
-              <span className="font-bold"> Paint Charges</span>. You will be provided with 
-              <span className="font-bold"> Rental Agreement Authorized Signature</span>
-              <br />
-              <span className="font-bold">ALLOWED:</span> For 2 Students belonging to 
-              <span className="font-bold"> 1st/2nd Year(Male Only)</span>
-            </p>
-          </>
-        );
-      } else if (property.id === ':2') {
-        return (
-          <>
-            <p className="text-lg text-gray-600">
-              This flat is located in a <span className="font-bold">prime area</span> 
-              within the 200 m radius of <span className="font-bold">DAYANANDA SAGAR COLLEGE</span>, 
-              convenient access to transportation, and shopping centers. The flat comes with all 
-              necessary amenities, ensuring a comfortable living experience. Additionally, the 
-              surrounding neighborhood is quiet and safe, making it an ideal choice for 
-              <span className="font-bold"> STUDENTS</span>.
-            </p>
-            <p className="text-lg text-gray-600">
-              The flat offers two spacious bedrooms, a modern kitchen with sufficient storage, 
-              and a comfortable living space. The attached bathroom is equipped with a geyser 
-              for hot water and well-maintained fittings. For those who enjoy natural light, 
-              the large windows in the living areas provide a warm and inviting atmosphere 
-              throughout the day.
-            </p>
-            <p className="text-lg text-gray-600">
-              <span className="font-bold">PRICING:</span> Rent: 
-              <span className="font-bold"> 25,000/month</span> + Water/Electricity Bill 
-              (approx <span className="font-bold"> 1000/month</span>)
-              <br />
-              <span className="font-bold">SECURITY DEPOSIT:</span> 
-              <span className="font-bold"> 60,000</span>
-              <br />
-              One month rent will be deducted for 
-              <span className="font-bold"> Paint Charges</span>. You will be provided with 
-              <span className="font-bold"> Rental Agreement Authorized Signature</span>
-              <br />
-              <span className="font-bold">ALLOWED:</span> For 2 People 
-            </p>
-          </>
-        );
-      }
-    };
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -551,22 +539,19 @@ function AniNavbar() {
         <div className="flex space-x-4 mb-8">
           <button
             onClick={() => setActiveTab('photos')}
-            className={`px-4 py-2 rounded-lg ${activeTab === 'photos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
-              }`}
+            className={`px-4 py-2 rounded-lg ${activeTab === 'photos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
           >
             Photos
           </button>
           <button
             onClick={() => setActiveTab('videos')}
-            className={`px-4 py-2 rounded-lg ${activeTab === 'videos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
-              }`}
+            className={`px-4 py-2 rounded-lg ${activeTab === 'videos' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
           >
             Videos
           </button>
           <button
             onClick={() => setActiveTab('details')}
-            className={`px-4 py-2 rounded-lg ${activeTab === 'details' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'
-              }`}
+            className={`px-4 py-2 rounded-lg ${activeTab === 'details' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
           >
             Details
           </button>
@@ -652,36 +637,36 @@ function AniNavbar() {
                 </div>
               </section>
 
-             {/* Map Section */}
-                           <section id="map" className="py-16 bg-white">
-                             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                               <h2 className="text-3xl font-bold mb-6">
-                                 Find Me Here
-                                 <br /> CLICK ON IT
-                               </h2>
-                               <a
-                                 href={property.id === ':1'
-                                   ? "https://www.google.com/maps?q=12.9113080,77.5665138"
-                                   : "https://www.google.com/maps?q=12.91166°,77.56592°"}
-                                 target="_blank"
-                                 rel="noopener noreferrer"
-                                 className="block"
-                               >
-                                 <img
-                                   src={property.id === ':1'
-                                     ? "../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
-                                     : "../../img/prop_2/IMG_0249.jpg"}
-                                   alt="Map Location"
-                                   className="w-full h-auto cursor-pointer"
-                                 />
-                               </a>
-                             </div>
-                           </section>
-                         </div>
-                       </div>
-                     )}
-                    
-                            {/* Media Modal */}
+              {/* Map Section */}
+              <section id="map" className="py-16 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                  <h2 className="text-3xl font-bold mb-6">
+                    Find Me Here
+                    <br /> CLICK ON IT
+                  </h2>
+                  <a
+                    href={property.id === ':1'
+                      ? "https://www.google.com/maps?q=12.9113080,77.5665138"
+                      : "https://www.google.com/maps?q=12.91166°,77.56592°"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <img
+                      src={property.id === ':1'
+                        ? "../../img/prop_1/IMG_D835C67C3AEF-1.jpeg"
+                        : "../../img/prop_2/IMG_0249.jpg"}
+                      alt="Map Location"
+                      className="w-full h-auto cursor-pointer"
+                    />
+                  </a>
+                </div>
+              </section>
+            </div>
+          </div>
+        )}
+      
+        {/* Media Modal */}
         {selectedMedia && (
           <div
             className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
@@ -704,17 +689,20 @@ function AniNavbar() {
         {/* Contact Section */}
         <div className="mt-8 flex justify-center">
           <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setIsDialogOpen(true)} 
             className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
           >
             Contact Tenant
           </button>
-          <ContactDialog
-            isOpen={isDialogOpen}
-            onClose={() => setIsModalOpen(false)}
-          />
         </div>
       </main>
+      
+      {/* Contact Dialog - Fixed placement */}
+      <ContactDialog
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+      />
+      
       <Footer />
     </div>
   );
@@ -741,12 +729,21 @@ const Footer = () => {
               <Instagram size={24} />
             </a>
             <a 
-              href="https://www.linkedin.com/in/aakash-patra-6ba866225" 
+              href="https://www.linkedin.com/in/aakashe/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-white"
             >
               <Linkedin size={24} />
+              
+            </a>
+            <a 
+              href="https://x.com/AAKASHEEX" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-white"
+            >
+              <Twitter size={24} />
             </a>
           </div>
         </div>
@@ -775,5 +772,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;
