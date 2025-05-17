@@ -1,15 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {
-  createContext,
-  useState,
-  useContext,
-  useEffect,
-  ReactNode,
-} from 'react';
+import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 import { AuthContextType, User } from '../types';
 
+// Create the auth context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Mock user data storage (in a real app, this would use localStorage or a backend)
 const USERS_STORAGE_KEY = 'roommate-finder-users';
 const CURRENT_USER_KEY = 'roommate-finder-current-user';
 
@@ -17,101 +12,99 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-// Utility to simulate delay (like API call)
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-type StoredUser = User & { password: string }; // extends user to hold password locally
-
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Check for existing session on mount
   useEffect(() => {
     const storedUser = localStorage.getItem(CURRENT_USER_KEY);
     if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (e) {
-        console.error('Failed to parse stored user:', e);
-      }
+      setUser(JSON.parse(storedUser));
     }
     setIsLoading(false);
   }, []);
 
-  const getUsers = (): Record<string, StoredUser> => {
-    const usersJSON = localStorage.getItem(USERS_STORAGE_KEY);
-    try {
-      return usersJSON ? JSON.parse(usersJSON) : {};
-    } catch (e) {
-      console.error('Failed to parse users:', e);
-      return {};
-    }
+  // Helper to get users from local storage
+  const getUsers = (): Record<string, User> => {
+    const users = localStorage.getItem(USERS_STORAGE_KEY);
+    return users ? JSON.parse(users) : {};
   };
 
-  const saveUsers = (users: Record<string, StoredUser>) => {
+  // Helper to save users to local storage
+  const saveUsers = (users: Record<string, User>) => {
     localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(users));
   };
 
+  // Sign in function
   const signIn = async (email: string, password: string) => {
     setIsLoading(true);
     setError(null);
-
+    
     try {
-      await delay(800);
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
       const users = getUsers();
-      const foundUser = Object.values(users).find(
-        u => u.email === email && u.password === password
-      );
-
-      if (!foundUser) {
-        throw new Error('Invalid email or password');
+      const user = Object.values(users).find(u => u.email === email);
+      
+      if (!user) {
+        throw new Error('User not found');
       }
-
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { password: _, ...publicUser } = foundUser;
-      setUser(publicUser);
-      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(publicUser));
+      
+      // In a real app, you would verify the password hash here
+      // For this demo, we're just simulating successful authentication
+      
+      // Set the current user
+      setUser(user);
+      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Sign up function
   const signUp = async (email: string, password: string, name: string) => {
     setIsLoading(true);
     setError(null);
-
+    
     try {
-      await delay(800);
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
       const users = getUsers();
-
+      
+      // Check if user already exists
       if (Object.values(users).some(u => u.email === email)) {
         throw new Error('User already exists');
       }
-
-      const newUser: StoredUser = {
+      
+      // Create new user
+      const newUser: User = {
         id: crypto.randomUUID(),
         email,
         name,
-        isProfileComplete: false,
-        password,
+        isProfileComplete: false
       };
-
+      
+      // Save user
       users[newUser.id] = newUser;
       saveUsers(users);
-
-      const { password: _, ...publicUser } = newUser;
-      setUser(publicUser);
-      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(publicUser));
+      
+      // Set the current user
+      setUser(newUser);
+      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(newUser));
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Sign out function
   const signOut = () => {
     setUser(null);
     localStorage.removeItem(CURRENT_USER_KEY);
@@ -124,19 +117,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     signIn,
     signUp,
     signOut,
-    error,
+    error
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
+// Custom hook to use the auth context
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;

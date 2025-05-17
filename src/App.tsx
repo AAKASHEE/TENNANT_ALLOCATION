@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Route, Routes, useParams, Link } from 'react-router-dom';
+import { useParams, Link, Routes, Route } from 'react-router-dom';
+
 import {
   Instagram,
   Linkedin,
@@ -14,7 +15,7 @@ interface Photo {
   caption: string;
 }
 
-interface VideoDetails { // Renamed from `Video` to avoid conflict
+interface VideoDetails {
   url: string;
   title: string;
 }
@@ -29,12 +30,12 @@ interface Property {
   photos: Photo[];
   videos: VideoDetails[];
 }
+
 // Contact Dialog Component
 interface ContactDialogProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
 
 
 // Property Data
@@ -71,8 +72,8 @@ const propertyData: Property[] = [
       { url: '../vid/prop:1/IMG_0167.mp4', title: 'HALL' },
       { url: '../vid/prop:1/IMG_0168.mp4', title: 'KITCHEN' },
       { url: '../vid/prop:1/IMG_0159.mp4', title: 'BATHROOM' },
-      { url: '../vid/prop:1/IMG_4844.mp4', title: 'OUTSIDE DAY' },
       { url: '../vid/prop:1/IMG_0169.mp4', title: 'OUTSIDE NIGHT' },
+      { url: '../vid/prop:1/IMG_4844.mp4', title: 'OUTSIDE DAY' }
     ]
   },
   {
@@ -138,7 +139,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="bg-white rounded-lg p-6 w-96">
         <h2 className="text-2xl font-semibold mb-4">Contact Tenant</h2>
-        <p className="text-2xl  mb-4" >Tap on the coloured line</p>
+        <p className="text-2xl mb-4">Tap on the coloured line</p>
         <p className="text-gray-700 mb-2">
           <strong>Name:</strong> AAKASHE
         </p>
@@ -147,7 +148,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
         </p>
         <p className="text-gray-700 mb-2">
           <strong>Email:</strong>{" "}
-          <a href="mailto:akashpatra@gmail.com" className="text-blue-600 underline">
+          <a href="mailto:aakashpatra253@gmail.com" className="text-blue-600 underline">
             aakashpatra253@gmail.com
           </a>
         </p>
@@ -303,7 +304,24 @@ const LandingPage = () => {
   );
 };
 
-import TeammatesPage from './pages/TeammatesPage'; // Teammates matgching Criteria
+// Simple TeammatesPage component as a placeholder
+// You should replace this with your actual TeammatesPage implementation
+const TeammatesPage = () => {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 className="text-4xl font-bold text-center mb-12">
+          Find Roommates
+        </h1>
+        <p className="text-center text-xl">
+          Feature coming soon! Connect with potential roommates who match your preferences.
+        </p>
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 const HomePage = () => {
   return (
@@ -365,25 +383,30 @@ function AniNavbar() {
     </div>
   );
 }
+
 const PropertyDetail = () => {
   const [activeTab, setActiveTab] = useState<'photos' | 'videos' | 'details'>('photos');
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false); // Add missing state for contact dialog
+  const [isDialogOpen, setIsDialogOpen] = useState(false); 
   
   const { id } = useParams(); // Get the property ID from the URL param
   const property = propertyData.find((p) => `${p.id}` === id); // Convert p.id to string
   
   // Save the active tab to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem(`activeTab-${id}`, activeTab);
+    if (id) {
+      localStorage.setItem(`activeTab-${id}`, activeTab);
+    }
   }, [activeTab, id]);
 
   // Retrieve the active tab from localStorage when the component mounts
   useEffect(() => {
-    const savedTab = localStorage.getItem(`activeTab-${id}`);
-    if (savedTab) {
-      setActiveTab(savedTab as 'photos' | 'videos' | 'details');
+    if (id) {
+      const savedTab = localStorage.getItem(`activeTab-${id}`);
+      if (savedTab) {
+        setActiveTab(savedTab as 'photos' | 'videos' | 'details');
+      }
     }
   }, [id]);
 
@@ -502,7 +525,10 @@ const PropertyDetail = () => {
           >
             <button
               className="absolute top-4 right-4 bg-red-500 text-white rounded-full p-2"
-              onClick={() => setIsModalOpen(false)}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                setIsModalOpen(false);
+              }}
             >
               ✖
             </button>
@@ -626,7 +652,7 @@ const PropertyDetail = () => {
                   <a
                     href={property.id === ':1'
                       ? "https://www.google.com/maps?q=12.9113080,77.5665138"
-                      : "https://www.google.com/maps?q=12.91166°,77.56592°"}
+                      : "https://www.google.com/maps?q=12.91166,77.56592"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block"
@@ -644,8 +670,8 @@ const PropertyDetail = () => {
             </div>
           </div>
         )}
-      
-        {/* Media Modal */}
+
+        {/* Media Viewer Modal */}
         {selectedMedia && (
           <div
             className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
@@ -653,102 +679,110 @@ const PropertyDetail = () => {
           >
             <button
               className="absolute top-4 right-4 bg-red-500 text-white rounded-full p-2"
-              onClick={() => setSelectedMedia(null)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedMedia(null);
+              }}
             >
               ✖
             </button>
             <img
               src={selectedMedia}
-              alt="Selected Media"
+              alt="Selected View"
               className="max-w-full max-h-[90vh] object-contain"
             />
           </div>
         )}
 
-        {/* Contact Section */}
-        <div className="mt-8 flex justify-center">
+        {/* Contact Button */}
+        <div className="fixed bottom-8 right-8">
           <button
-            onClick={() => setIsDialogOpen(true)} 
-            className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+            onClick={() => setIsDialogOpen(true)}
+            className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg text-xl"
           >
-            Contact Tenant
+            Contact Now
           </button>
         </div>
+
+        {/* Contact Dialog */}
+        <ContactDialog
+          isOpen={isDialogOpen}
+          onClose={() => setIsDialogOpen(false)}
+        />
       </main>
-      
-      {/* Contact Dialog - Fixed placement */}
-      <ContactDialog
-        isOpen={isDialogOpen}
-        onClose={() => setIsDialogOpen(false)}
-      />
-      
       <Footer />
     </div>
   );
 };
 
-// Footer Component
+
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-8">
+    <footer className="w-full bg-[#003153] text-white py-12 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold">DWella</h2>
-            <p className="text-gray-300">Your Housing and Roommate Solution</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Column 1 */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">About DWella</h3>
+            <p className="mb-4">
+              DWella is dedicated to helping students at Dayananda Sagar College find quality housing and compatible roommates.
+            </p>
+            <div className="flex space-x-4">
+              <a href="https://www.instagram.com/aakaas.he" target="_blank" rel="noopener noreferrer">
+                <Instagram className="h-6 w-6 text-white hover:text-blue-300" />
+              </a>
+              <a href="https://www.linkedin.com/in/aakash-patra-5b0b8b1b0/" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="h-6 w-6 text-white hover:text-blue-300" />
+              </a>
+              <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+                <Twitter className="h-6 w-6 text-white hover:text-blue-300" />
+              </a>
+            </div>
           </div>
-          
-          <div className="flex space-x-6">
-            <a 
-              href="https://www.instagram.com/aakaas.he/" 
-              target="_blank" 
+
+          {/* Column 2 */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><a href="/" className="hover:text-blue-300">Home</a></li>
+              <li><a href="/housing" className="hover:text-blue-300">Housing</a></li>
+              <li><a href="/teammates" className="hover:text-blue-300">Teammates</a></li>
+            </ul>
+          </div>
+
+          {/* Column 3 */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+            <p className="mb-2">Dayananda Sagar College</p>
+            <p className="mb-2">Bangalore, India</p>
+            <p className="mb-4">Email: aakashpatra253@gmail.com</p>
+            <a
+              href="https://wa.me/918861653961"
+              className="inline-block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+              target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white"
             >
-              <Instagram size={24} />
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/aakashe/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white"
-            >
-              <Linkedin size={24} />
-              
-            </a>
-            <a 
-              href="https://x.com/AAKASHEEX" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-white"
-            >
-              <Twitter size={24} />
+              WhatsApp Us
             </a>
           </div>
         </div>
-        
-        <hr className="border-gray-700 my-6" />
-        
-        <div className="text-center text-gray-400 text-sm">
+
+        <div className="border-t border-blue-700 mt-8 pt-8 text-center">
           <p>&copy; {new Date().getFullYear()} DWella. All rights reserved.</p>
-          <p className="mt-2">Designed by AAKASHE</p>
         </div>
       </div>
     </footer>
   );
 };
-
-// Main App
-function App() {
+const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/housing" element={<HomePage />} />
-        <Route path="/teammates" element={<TeammatesPage />} />
-        <Route path="/property/:id" element={<PropertyDetail />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/housing" element={<HomePage />} />
+      <Route path="/property/:id" element={<PropertyDetail />} />
+      <Route path="/teammates" element={<TeammatesPage />} />
+    </Routes>
   );
-}
+};
+
 export default App;

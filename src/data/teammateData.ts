@@ -1,4 +1,4 @@
-import { Teammate, FilterOptions } from '../types/index';
+import { Teammate, FilterOptions } from '../types';
 
 // Sample teammate data
 export const teammateData: Teammate[] = [

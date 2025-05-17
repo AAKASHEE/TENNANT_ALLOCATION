@@ -1,8 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,html}", // adjust based on your file structure
+    "./public/index.html"
+  ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        prussian: "#003153",
+      },
+    },
   },
   plugins: [],
 };
