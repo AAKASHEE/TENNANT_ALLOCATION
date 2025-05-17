@@ -47,3 +47,24 @@ export interface ActiveFilters {
   gender: string[];
   year: string[];
 }
+// Types
+interface Photo {
+  url: string;
+  caption: string;
+}
+
+interface VideoDetails {
+  url: string;
+  title: string;
+}
+
+interface Property {
+  id: string;
+  location: string;
+  description: string;
+  image: string;
+  price: string;
+  amenities: string[];
+  photos: Photo[];
+  videos: VideoDetails[];
+}
