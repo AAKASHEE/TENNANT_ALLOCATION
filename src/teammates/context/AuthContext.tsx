@@ -122,7 +122,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-export { AuthContext };
+export default AuthContext ;
 
 
 // Custom hook to use the auth context has been moved to useAuth.ts
