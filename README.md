@@ -39,4 +39,4 @@ To get started with this project locally, follow the instructions below:
 Clone this repository to your local machine using the following command:
 
 ```bash
-git clone https://github.com/yourusername/property-video-gallery.git
+git clone https://github.com/AAKASHEE/TENNANT_ALLOCATION
