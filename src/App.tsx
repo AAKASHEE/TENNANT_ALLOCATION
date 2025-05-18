@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, Link, Routes, Route } from 'react-router-dom';
+import {useParams,Link, Routes, Route } from 'react-router-dom';
+import TeammatesPage from './teammates/pages/TeammatesPage';
+import SignInPage from './teammates/pages/SignIn';
+import ProfilePage from './teammates/pages/ProfileCreation';
+import { AuthProvider } from './teammates/context/AuthContext';
 
 import {
   Instagram,
@@ -303,26 +307,6 @@ const LandingPage = () => {
     </div>
   );
 };
-
-// Simple TeammatesPage component as a placeholder
-// You should replace this with your actual TeammatesPage implementation
-const TeammatesPage = () => {
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <Navbar />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-bold text-center mb-12">
-          Find Roommates
-        </h1>
-        <p className="text-center text-xl">
-          Feature coming soon! Connect with potential roommates who match your preferences.
-        </p>
-      </main>
-      <Footer />
-    </div>
-  );
-};
-
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-100">
@@ -715,7 +699,6 @@ const PropertyDetail = () => {
   );
 };
 
-
 const Footer = () => {
   return (
     <footer className="w-full bg-[#003153] text-white py-12 relative z-10">
@@ -776,12 +759,18 @@ const Footer = () => {
 };
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/housing" element={<HomePage />} />
-      <Route path="/property/:id" element={<PropertyDetail />} />
-      <Route path="/teammates" element={<TeammatesPage />} />
-    </Routes>
+      <AuthProvider>
+          <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/housing" element={<HomePage />} />
+              <Route path="/property/:id" element={<PropertyDetail />} />
+              
+              {/* Add /* to allow nested routes */}
+              <Route path="/teammates" element={<TeammatesPage />} />
+              <Route path="/signin" element={<SignInPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+          </Routes>
+    </AuthProvider>
   );
 };
 

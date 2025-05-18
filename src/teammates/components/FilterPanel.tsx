@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilterOptions, ActiveFilters } from '../types';
+import { FilterOptions, ActiveFilters } from '../../types';
 
 interface FilterPanelProps {
   showFilters: boolean;

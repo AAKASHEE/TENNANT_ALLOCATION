@@ -1,5 +1,5 @@
-import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
-import { AuthContextType, User } from '../types';
+import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import { AuthContextType, User } from '../../types';
 
 // Create the auth context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   // Sign in function
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (email: string) => {
     setIsLoading(true);
     setError(null);
     
@@ -67,7 +67,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   // Sign up function
-  const signUp = async (email: string, password: string, name: string) => {
+  const signUp = async (email: string, name: string) => {
     setIsLoading(true);
     setError(null);
     
@@ -122,12 +122,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+export { AuthContext };
 
-// Custom hook to use the auth context
-export const useAuth = (): AuthContextType => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
+
+// Custom hook to use the auth context has been moved to useAuth.ts

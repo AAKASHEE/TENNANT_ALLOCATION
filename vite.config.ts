@@ -21,5 +21,10 @@ export default defineConfig({
     headers: {
       'Cache-Control': 'public, max-age=31536000',
     },
+    hmr: {
+      clientPort: 5173, // Force WebSocket to use the same port
+    },
+    // For Docker/WSL or remote dev:
+    // host: true,
   },
 });

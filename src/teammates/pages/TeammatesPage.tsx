@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, Filter, UserPlus } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/useAuth';
 import TeammateCard from '../components/TeammateCard';
 import FilterPanel from '../components/FilterPanel';
 import Button from '../components/Button';
 import { teammateData, filterOptions } from '../data/teammateData';
-import { ActiveFilters } from '../types';
+import { ActiveFilters } from '../../types';
 
 const TeammatesPage: React.FC = () => {
   const { isAuthenticated, user, signOut } = useAuth();

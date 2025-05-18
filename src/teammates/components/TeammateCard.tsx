@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Teammate } from '../types';
+import { Teammate } from '../../types/index';
 
 interface TeammateCardProps {
   teammate: Teammate;
