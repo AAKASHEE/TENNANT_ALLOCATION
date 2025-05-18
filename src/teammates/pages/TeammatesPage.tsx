@@ -97,10 +97,10 @@ const TeammatesPage: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow-sm">
+      <nav className="bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <Link to="/" className="text-2xl font-bold text-blue-600">RoommateFinder</Link>
+            <Link to="/" className="text-2xl font-bold text-blue-600">DWella</Link>
             
             <div className="flex items-center space-x-4">
               {isAuthenticated ? (
@@ -114,7 +114,7 @@ const TeammatesPage: React.FC = () => {
             </div>
           </div>
         </div>
-      </header>
+      </nav>
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
@@ -204,7 +204,7 @@ const TeammatesPage: React.FC = () => {
       
       <footer className="bg-white border-t mt-12 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500">&copy; {new Date().getFullYear()} RoommateFinder. All rights reserved.</p>
+          <p className="text-center text-gray-500">&copy; {new Date().getFullYear()} DWella. All rights reserved.</p>
         </div>
       </footer>
     </div>

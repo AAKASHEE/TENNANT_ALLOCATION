@@ -1,91 +1,76 @@
 import { Teammate, FilterOptions } from '../../types';
 
-// Sample teammate data
 export const teammateData: Teammate[] = [
   {
     id: "1",
-    name: "Rahul Sharma",
+    name: "Aakash Patra",
     photo: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=150",
-    age: 21,
+    age: 20,
     gender: "Male",
-    course: "Computer Science",
+    course: "Electrical Engineering",
     year: "2nd Year",
-    housingPreference: ["2 BHK", "Near College"],
-    traits: ["Non-smoker", "Occasional drinking", "Gym enthusiast", "Vegetarian", "Early riser"],
-    bio: "Looking for a studious roommate to share a flat near DSC. I'm organized and prefer a quiet environment for studying.",
-    contact: "rahul.s@example.com"
+    housingPreference: ["2 BHK", "Near College", "Semi-Furnished"],
+    traits: ["Non-smoker", "Early riser", "Organized", "Studious"],
+    bio: "Hi! I'm a second-year EE student looking for roommates. I'm organized, studious, and prefer a quiet environment for studying. I enjoy playing sports and am always up for a good conversation.",
+    contact: "aakashpatra253@gmail.com"
   },
   {
     id: "2",
-    name: "Priya Patel",
-    photo: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150",
-    age: 20,
-    gender: "Female",
-    course: "Electronics Engineering",
-    year: "1st Year",
-    housingPreference: ["3 BHK", "Furnished"],
-    traits: ["Non-smoker", "Non-drinker", "Yoga practitioner", "Vegetarian", "Night owl"],
-    bio: "Hi! I'm looking for female roommates to share a furnished apartment. I'm neat, friendly and respect personal space.",
-    contact: "priya.p@example.com"
+    name: "Rahul Kumar",
+    photo: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150",
+    age: 21,
+    gender: "Male",
+    course: "Computer Science",
+    year: "3rd Year",
+    housingPreference: ["3 BHK", "Furnished", "Near Metro"],
+    traits: ["Non-smoker", "Night owl", "Tech enthusiast", "Vegetarian"],
+    bio: "CSE student passionate about coding and technology. Looking for like-minded roommates who enjoy tech discussions and maintain a clean living space.",
+    contact: "rahul.k@example.com"
   },
   {
     id: "3",
-    name: "Amit Kumar",
-    photo: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150",
-    age: 22,
-    gender: "Male",
-    course: "Mechanical Engineering",
-    year: "3rd Year",
-    housingPreference: ["2 BHK", "Budget-friendly"],
-    traits: ["Smoker", "Social drinker", "Football player", "Non-vegetarian", "Flexible schedule"],
-    bio: "Looking for a laid-back roommate who enjoys sports and doesn't mind occasional parties. I'm easygoing and friendly.",
-    contact: "amit.k@example.com"
+    name: "Priya Singh",
+    photo: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150",
+    age: 19,
+    gender: "Female",
+    course: "Electronics Engineering",
+    year: "1st Year",
+    housingPreference: ["2 BHK", "Gated Community", "Near College"],
+    traits: ["Non-smoker", "Early riser", "Fitness enthusiast", "Vegetarian"],
+    bio: "First-year student looking for female roommates. I'm neat, organized, and enjoy working out. Seeking a peaceful environment for studies.",
+    contact: "priya.s@example.com"
   },
   {
     id: "4",
-    name: "Riya Mehta",
-    photo: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150",
-    age: 21,
-    gender: "Female",
-    course: "Information Technology",
-    year: "2nd Year",
-    housingPreference: ["1 BHK", "Gated community"],
-    traits: ["Non-smoker", "Non-drinker", "Fitness enthusiast", "Vegetarian", "Early riser"],
-    bio: "Seeking a female roommate who is clean, organized and respects privacy. I prefer a peaceful living environment.",
-    contact: "riya.m@example.com"
+    name: "Amit Sharma",
+    photo: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=150",
+    age: 22,
+    gender: "Male",
+    course: "Mechanical Engineering",
+    year: "4th Year",
+    housingPreference: ["3 BHK", "Near Metro", "Furnished"],
+    traits: ["Non-smoker", "Sports enthusiast", "Social", "Non-vegetarian"],
+    bio: "Final year student who enjoys sports and socializing. Looking for roommates who are okay with occasional gatherings but respect study time.",
+    contact: "amit.s@example.com"
   },
   {
     id: "5",
-    name: "Vikram Singh",
-    photo: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=150",
-    age: 23,
-    gender: "Male",
-    course: "Civil Engineering",
-    year: "4th Year",
-    housingPreference: ["3 BHK", "Close to metro"],
-    traits: ["Non-smoker", "Occasional drinking", "Cricket player", "Non-vegetarian", "Night owl"],
-    bio: "Final year student looking for roommates who are okay with occasional gatherings. I'm responsible and considerate.",
-    contact: "vikram.s@example.com"
-  },
-  {
-    id: "6",
-    name: "Ananya Gupta",
-    photo: "https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=150",
+    name: "Neha Gupta",
+    photo: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150",
     age: 20,
     gender: "Female",
-    course: "Business Administration",
-    year: "1st Year",
-    housingPreference: ["2 BHK", "Furnished"],
-    traits: ["Non-smoker", "Social drinker", "Dance enthusiast", "Vegetarian", "Flexible schedule"],
-    bio: "Friendly and outgoing person looking for roommates who enjoy socializing but also respect study time.",
-    contact: "ananya.g@example.com"
+    course: "Information Technology",
+    year: "2nd Year",
+    housingPreference: ["2 BHK", "Near College", "Gated Community"],
+    traits: ["Non-smoker", "Bookworm", "Music lover", "Vegetarian"],
+    bio: "IT student who loves reading and music. Looking for female roommates who appreciate a quiet, peaceful living environment.",
+    contact: "neha.g@example.com"
   }
 ];
 
-// Filter options
 export const filterOptions: FilterOptions = {
-  housingPreference: ["1 BHK", "2 BHK", "3 BHK", "Furnished", "Near College", "Budget-friendly", "Gated community", "Close to metro"],
-  traits: ["Non-smoker", "Smoker", "Non-drinker", "Occasional drinking", "Social drinker", "Gym enthusiast", "Yoga practitioner", "Football player", "Cricket player", "Dance enthusiast", "Fitness enthusiast", "Vegetarian", "Non-vegetarian", "Early riser", "Night owl", "Flexible schedule"],
-  gender: ["Male", "Female", "Other"],
+  housingPreference: ["1 BHK", "2 BHK", "3 BHK", "Furnished", "Semi-Furnished", "Near College", "Near Metro", "Gated Community"],
+  traits: ["Non-smoker", "Early riser", "Night owl", "Vegetarian", "Non-vegetarian", "Fitness enthusiast", "Sports enthusiast", "Tech enthusiast", "Bookworm", "Music lover", "Social", "Organized", "Studious"],
+  gender: ["Male", "Female"],
   year: ["1st Year", "2nd Year", "3rd Year", "4th Year"]
 };
